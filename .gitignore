@@ -4,3 +4,7 @@
 .RData
 .Ruserdata
 *.Rproj
+*.DS_Store
+*.rds
+code/simulation/figures/
+code/simulation/results/
