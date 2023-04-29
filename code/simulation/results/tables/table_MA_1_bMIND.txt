@@ -1,0 +1,90 @@
+
+\\\hline
+\multirow{28}{*}{150} & \multirow{14}{*}{\begin{tabular}[c]{@{}l@{}}$100$\end{tabular}}
+& \texttt{Bulk}
+& \begin{tabular}[c]{@{}c@{}}25.13\\\small{(0.17)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}24.64\\\small{(0.17)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.16\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.93\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}25.25\\\small{(0.17)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}24.64\\\small{(0.17)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.16\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.20\\\small{(0.08)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{d-CSNet}
+& \begin{tabular}[c]{@{}c@{}}10.96\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.12\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}24.67\\\small{(0.79)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}9.07\\\small{(0.69)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{CSNet}
+& \begin{tabular}[c]{@{}c@{}}\bf{2.22}\\\small{\bf{(0.12)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.60}\\\small{\bf{(0.04)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.04}\\\small{\bf{(0.01)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.93}\\\small{\bf{(0.05)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{3.11}\\\small{\bf{(0.05)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.77}\\\small{\bf{(0.01)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.00}\\\small{\bf{(0.00)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.01}\\\small{\bf{(0.03)}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{bMIND}
+& \begin{tabular}[c]{@{}c@{}}9.05\\\small{(0.10)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.54\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}11.76\\\small{(0.16)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.82\\\small{(0.23)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND}
+& \begin{tabular}[c]{@{}c@{}}2.30\\\small{(0.10)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.62\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.04\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.94\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.03\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.77\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.01\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.25\\\small{(0.15)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{bMIND-noninf}
+& \begin{tabular}[c]{@{}c@{}}9.40\\\small{(0.13)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.79\\\small{(0.15)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}10.05\\\small{(0.15)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.97\\\small{(0.16)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND-noninf}
+& \begin{tabular}[c]{@{}c@{}}2.42\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.65\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.03\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.86\\\small{(0.07)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.31\\\small{(0.08)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.79\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.03\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.04\\\small{(0.04)}\end{tabular}
+\\\hline\\\cline{2-11}
+& \multirow{14}{*}{\begin{tabular}[c]{@{}l@{}}$200$\end{tabular}}
+& \texttt{Bulk}
+& \begin{tabular}[c]{@{}c@{}}49.06\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}48.54\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.14\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.91\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}49.17\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}48.54\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.14\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.17\\\small{(0.05)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{d-CSNet}
+& \begin{tabular}[c]{@{}c@{}}22.02\\\small{(0.16)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}5.17\\\small{(0.19)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}49.20\\\small{(1.18)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}16.02\\\small{(0.98)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{CSNet}
+& \begin{tabular}[c]{@{}c@{}}\bf{3.41}\\\small{\bf{(0.10)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.66}\\\small{\bf{(0.03)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.02}\\\small{\bf{(0.00)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.89}\\\small{\bf{(0.04)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{4.45}\\\small{\bf{(0.03)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.00}\\\small{\bf{(0.00)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.00}\\\small{\bf{(0.01)}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{bMIND}
+& \begin{tabular}[c]{@{}c@{}}18.02\\\small{(0.10)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.20\\\small{(0.15)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}23.41\\\small{(0.19)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}6.70\\\small{(0.35)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND}
+& \begin{tabular}[c]{@{}c@{}}3.44\\\small{(0.09)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.66\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.02\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.91\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.38\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.77\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.16\\\small{(0.10)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{bMIND-noninf}
+& \begin{tabular}[c]{@{}c@{}}18.76\\\small{(0.15)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.70\\\small{(0.19)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}19.42\\\small{(0.17)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.84\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND-noninf}
+& \begin{tabular}[c]{@{}c@{}}3.61\\\small{(0.10)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.69\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.02\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.82\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.70\\\small{(0.07)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.79\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.01\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.02\\\small{(0.02)}\end{tabular}
+\\\hline\\\hline
+\multirow{28}{*}{600} & \multirow{14}{*}{\begin{tabular}[c]{@{}l@{}}$100$\end{tabular}}
+& \texttt{Bulk}
+& \begin{tabular}[c]{@{}c@{}}25.17\\\small{(0.08)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}24.77\\\small{(0.08)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.17\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}25.41\\\small{(0.08)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}24.77\\\small{(0.08)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.17\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.61\\\small{(0.15)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{d-CSNet}
+& \begin{tabular}[c]{@{}c@{}}5.41\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.32\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}11.52\\\small{(0.18)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.19\\\small{(0.18)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{CSNet}
+& \begin{tabular}[c]{@{}c@{}}\bf{0.80}\\\small{\bf{(0.07)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.25}\\\small{\bf{(0.04)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.03}\\\small{\bf{(0.01)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{1.00}\\\small{\bf{(0.00)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{2.41}\\\small{\bf{(0.12)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.62}\\\small{\bf{(0.05)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.03}\\\small{\bf{(0.01)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.91}\\\small{\bf{(0.07)}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{bMIND}
+& \begin{tabular}[c]{@{}c@{}}4.72\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.29\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}6.41\\\small{(0.08)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.77\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND}
+& \begin{tabular}[c]{@{}c@{}}1.02\\\small{(0.07)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.30\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.05\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.32\\\small{(0.09)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.61\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.06\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.97\\\small{(0.03)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{bMIND-noninf}
+& \begin{tabular}[c]{@{}c@{}}5.02\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.24\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}5.88\\\small{(0.09)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.63\\\small{(0.13)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND-noninf}
+& \begin{tabular}[c]{@{}c@{}}1.11\\\small{(0.10)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.33\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.03\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.20\\\small{(0.09)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.75\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.04\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.49\\\small{(0.10)}\end{tabular}
+\\\hline\\\cline{2-11}
+& \multirow{14}{*}{\begin{tabular}[c]{@{}l@{}}$200$\end{tabular}}
+& \texttt{Bulk}
+& \begin{tabular}[c]{@{}c@{}}49.19\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}48.77\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.14\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}49.43\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}48.77\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.14\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.56\\\small{(0.12)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{d-CSNet}
+& \begin{tabular}[c]{@{}c@{}}10.86\\\small{(0.07)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.07\\\small{(0.07)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}23.00\\\small{(0.25)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}5.22\\\small{(0.21)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{CSNet}
+& \begin{tabular}[c]{@{}c@{}}\bf{1.29}\\\small{\bf{(0.08)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.29}\\\small{\bf{(0.03)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.02}\\\small{\bf{(0.01)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{1.00}\\\small{\bf{(0.00)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{3.67}\\\small{\bf{(0.13)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.68}\\\small{\bf{(0.06)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.02}\\\small{\bf{(0.01)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.86}\\\small{\bf{(0.07)}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{bMIND}
+& \begin{tabular}[c]{@{}c@{}}9.17\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.72\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}12.53\\\small{(0.09)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.15\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND}
+& \begin{tabular}[c]{@{}c@{}}1.51\\\small{(0.08)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.33\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.02\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.40\\\small{(0.09)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.64\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.03\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.97\\\small{(0.02)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{bMIND-noninf}
+& \begin{tabular}[c]{@{}c@{}}9.88\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.96\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}11.04\\\small{(0.11)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.02\\\small{(0.22)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND-noninf}
+& \begin{tabular}[c]{@{}c@{}}1.68\\\small{(0.10)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.37\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.02\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.56\\\small{(0.08)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.76\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.02\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.47\\\small{(0.08)}\end{tabular}
+\\\hline
