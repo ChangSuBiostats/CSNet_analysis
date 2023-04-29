@@ -10,7 +10,7 @@
 
 # least squares for moment-based regressions
 mom_ls <- function(P, X, 
-	methods = list(var='nnls', covar = 'irls')){
+	methods = list(var='nnls', covar = 'wls')){
   P_2 <- P^2
   # mean regression
   mu <- apply(X, 2, function(x) nnls(P, x)$x)
@@ -32,13 +32,13 @@ mom_ls <- function(P, X,
   if(methods$covar == 'ols'){
   	n <- nrow(P)
   	w <- rep(1, n)
-  }else if(methods$covar == 'irls'){
+  }else if(methods$covar == 'wls'){
   	obs_w <- P_2 %*% sigma_var
   }
   for(i in 1:(p-1)){
   	for(j in (i+1):p){
-  		if(methods$covar == 'irls'){
-  			w <- sqrt(obs_w[i] * obs_w[j])
+  		if(methods$covar == 'wls'){
+  			w <- sqrt(obs_w[,i] * obs_w[,j])
   		}
   		P_2_w <- P_2 / w
   		y_w <- X_centered[, i] * X_centered[, j] / w

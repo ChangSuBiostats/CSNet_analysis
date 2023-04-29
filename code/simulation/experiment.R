@@ -11,8 +11,12 @@ source('data_helper.R')
 source('tuning_helper.R')
 source('evaluation_helper.R')
 source('bMIND_helper.R')
+source('ENIGMA_helper.R')
+source('visualization_helper.R')
 library(dplyr)
 library(nnls)
+library(ggplot2)
+library(gridExtra)
 
 # -
 # 1. set parameters for the experiment
@@ -23,6 +27,8 @@ library("optparse")
 option_list = list(
   make_option(c("--n_rep"), type="integer", default=1,
               help="number of simulation replications", metavar="integer"),
+  make_option(c("--i_rep"), type="integer", default=1,
+              help="the simulation replication", metavar="integer"),
   make_option(c("--n"), type="integer", default=150,
               help="number of bulk samples", metavar="integer"),
   make_option(c("--p"), type="integer", default=100,
@@ -58,11 +64,15 @@ option_list = list(
               default=0, help="relative magnitude of the bias",
               metavar='numeric'),
   # parameters specific to which LS methods to use
-  make_option(c("--method_var"), type="character", default="ols",
-          help="run ols or nnls for estimating cell-type-specificvariances", 
-          metavar="character"),
-  make_option(c("--method_covar"), type="character", default="ols",
-          help="run ols or irls for estimating cell-type-specificvariances", 
+  # make_option(c("--method_var"), type="character", default="ols",
+  #         help="run ols or nnls for estimating cell-type-specificvariances", 
+  #         metavar="character"),
+  # make_option(c("--method_covar"), type="character", default="ols",
+  #         help="run ols or irls for estimating cell-type-specificvariances", 
+  #         metavar="character"),
+  # whether to save estimates
+  make_option(c("--save_est"), type="character", default="F",
+          help="whether to save co-expression estimates from all methods",
           metavar="character")
 )
 
@@ -72,6 +82,7 @@ opt = parse_args(opt_parser);
 ## parameters specific to simulation experiments
 # number of replications
 n_rep <- opt$n_rep
+i_rep <- opt$i_rep
 # sample seeds for random samples
 seed <- 1
 set.seed(seed)
@@ -100,8 +111,8 @@ if(K == 2){
 }
 
 ## parameters for CSNet regressions
-methods <- list(var = opt$method_var,
-	covar = opt$method_covar)
+# methods <- list(var = opt$method_var,
+# 	covar = opt$method_covar)
 
 ## parameters for sensitivity analysis
 # whether to conduct sensitivity analysis
@@ -114,6 +125,9 @@ if(sensitivity){
 ## parameters specific to K=4 analysis
 # whether to specify equal strength
 equal_strength <- opt$equal_strength == 'T'
+
+## whether to save co-expression estimates
+save_est <- opt$save_est == 'T'
 
 ## fixed parameters
 
@@ -138,10 +152,11 @@ if(K == 2){
 	}else{
 		cor_model_prefix <- 'dcSBM'
 	}
-	occ_prefix <- sprintf('_log_var_%.1f_equal_strength_%s', log_var, equal_strength)
-	prefix <- sprintf('%s/K_%i/var_%s_covar_%s%s/n_%i_p_%i', 
-		cor_model_prefix, K, methods$var, methods$covar, 
-		ifelse((log_var != 8.0) | (!equal_strength), occ_prefix, ''),
+	occ_prefix <- sprintf('log_var_%.1f_equal_strength_%s', log_var, equal_strength)
+	prefix <- sprintf('%s/K_%i/%s/n_%i_p_%i', 
+		cor_model_prefix, K,  
+                occ_prefix,
+		# ifelse((log_var != 8.0) | (!equal_strength), occ_prefix, 'standard'),
 		n, p)
 }
 
@@ -175,49 +190,61 @@ sim_setting <- gen_sim_setting(cor_model,
 
 # simulate expression data & run methods
 # keep track of errors
-coexp_methods <- c('Bulk', 'd-CSNet', 'CSNet', 'bMIND', 's-bMIND', 'bMIND-noninf', 's-bMIND-noninf', 'ENIGMA', 's-ENIGMA')
+coexp_methods <- c('d-Bulk', 'Bulk', 'd-CSNet-ols', 'CSNet-ols', 'd-CSNet', 'CSNet', 'bMIND', 's-bMIND', 'bMIND-noninf', 's-bMIND-noninf', 'ENIGMA', 's-ENIGMA')#, 'ENIGMA-trace', 's-ENIGMA-trace')
 metrics <- c('F_norm', 'op_norm', 'FPR', 'TPR')
-error_mat <- matrix(NA, nrow = n_rep, ncol = K)
-error_array <- array(NA, dim = c(n_rep, 4, K), 
-  dimnames = list(paste0('rep_', 1:n_rep),
-    metrics, paste0('cell_type_', 1:K)))
+error_mat <- matrix(NA, nrow = 4, ncol = K)
+colnames(error_mat) <- paste0('cell_type_', 1:K)
+rownames(error_mat) <- metrics
 
-error_rec <- lapply(1:length(coexp_methods), function(i) error_array)
+error_rec <- lapply(1:length(coexp_methods), function(i) error_mat)
 names(error_rec) <- coexp_methods
 
-for(i_rep in 1:n_rep){
+est_list <- list()
+
+# for(i_rep in 1:n_rep){
+  # -
+  # simulate data
+  # -
   # simulate cell-type-specific expression
   train_list <- sim_exp(cor_model, n, seeds[i_rep], sim_setting, props = NULL, verbose=F)
-  valid_list <- sim_exp(cor_model, n, seeds[i_rep]*2 + 10, sim_setting, 
+  valid_list <- sim_exp(cor_model, n_val, seeds[i_rep]*2 + 10, sim_setting, 
     props = sim_setting$props[1:n_val, ],verbose=F)
   
   # evaluate ct-specific co-expressions estimated by different methods
-  
-
   # -
   # evaluate CSNet
   # -
-
-  # obtain d-CSNet estimates
-  train_cov_est <- mom_ls(train_list$data$P, train_list$data$X, methods)
-  train_cor_est <- lapply(train_cov_est, function(x) get_cor_from_cov(x)) 
-  error_rec[['d-CSNet']][i_rep, , ] <- sapply(1:K, function(k){
-    eval_errors(train_cor_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
-  })
-
-  # tune thresholding parameter with the independent validation data
-  tuning_result <- th_tuning(train_list$data, valid_list$data,
-    coexp_method = 'CSNet',
-    ctrl_list = list(ls_methods = methods))
-
-  # obtain CSNet estiamtes
-  train_cor_th_est <- lapply(1:K, function(k){
-    generalized_th(train_cor_est[[k]], tuning_result$th[k], gen_th_op, F)
-  })
-  error_rec[['CSNet']][i_rep, , ] <- sapply(1:K, function(k){
-    eval_errors(train_cor_th_est[[k]], sim_setting$R[[k]], metrics)
-  })
-
+  
+  methods_settings <- list(
+    ols = list(var = 'ols', covar = 'ols'),
+    wls = list(var = 'nnls', covar = 'wls')
+  )
+  settings_names <- c('-ols', '')
+  
+  for(i in 1:2){
+    # obtain d-CSNet estimates
+    train_cov_est <- mom_ls(train_list$data$P, train_list$data$X, methods_settings[[i]])
+    train_cor_est <- lapply(train_cov_est, function(x) get_cor_from_cov(x)) 
+    error_rec[[sprintf('d-CSNet%s', settings_names[i])]] <- sapply(1:K, function(k){
+      eval_errors(train_cor_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
+    })
+    est_list[[sprintf('d-CSNet%s', settings_names[i])]] <- train_cor_est
+    print(train_cor_est[[1]][1:3,1:3])  
+    # tune thresholding parameter with the independent validation data
+    tuning_result <- th_tuning(train_list$data, valid_list$data,
+      coexp_method = 'CSNet',
+      ctrl_list = list(ls_methods = methods_settings[[i]]))
+  
+    # obtain CSNet estiamtes
+    train_cor_th_est <- lapply(1:K, function(k){
+      generalized_th(train_cor_est[[k]], tuning_result$th[k], gen_th_op, F)
+    })
+    error_rec[[sprintf('CSNet%s', settings_names[i])]] <- sapply(1:K, function(k){
+      eval_errors(train_cor_th_est[[k]], sim_setting$R[[k]], metrics)
+    })
+    est_list[[sprintf('CSNet%s', settings_names[i])]] <- train_cor_th_est
+  }
+  
   # -
   # evaluate sparse bulk estimate
   # -
@@ -227,10 +254,12 @@ for(i_rep in 1:n_rep){
   bulk_train_cor_th_est <- lapply(1:K, function(k){
     generalized_th(bulk_train_cor_est, bulk_tuning_result$th, gen_th_op, F)
   }) # same for two cell types
-  error_rec[['Bulk']][i_rep, ,] <- sapply(1:K, function(k){
+  error_rec[['Bulk']] <- sapply(1:K, function(k){
     eval_errors(bulk_train_cor_th_est[[k]], sim_setting$R[[k]], metrics)
   })
-
+  est_list[['Bulk']] <- bulk_train_cor_th_est
+  est_list[['d-Bulk']] <- lapply(1:K, function(k) bulk_train_cor_est)
+  
   # -
   # evaluate bMIND
   # -
@@ -238,10 +267,11 @@ for(i_rep in 1:n_rep){
   ## with informative prior
   # bMIND
   bMIND_train_est <- coexp_by_bMIND(train_list, prior_info = 'informative')
-  error_rec[['bMIND']][i_rep, , ] <- sapply(1:K, function(k){
-    eval_errors(bMIND_train_est[[k]], sim_setting$R[[k]], metrics)
+  error_rec[['bMIND']] <- sapply(1:K, function(k){
+    eval_errors(bMIND_train_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
   })
-
+  est_list[['bMIND']] <- bMIND_train_est
+  
   # sparse bMIND
   bMIND_tuning_result <- th_tuning(train_list, valid_list,
     coexp_method = 'bMIND',
@@ -249,17 +279,19 @@ for(i_rep in 1:n_rep){
   sparse_bMIND_train_th_est <- lapply(1:K, function(k){
     generalized_th(bMIND_train_est[[k]], bMIND_tuning_result$th[k], gen_th_op, F)
   })
-  error_rec[['s-bMIND']][i_rep, , ] <- sapply(1:K, function(k){
+  error_rec[['s-bMIND']] <- sapply(1:K, function(k){
     eval_errors(sparse_bMIND_train_th_est[[k]], sim_setting$R[[k]], metrics)
   })
-
+  est_list[['s-bMIND']] <- sparse_bMIND_train_th_est
+  
   ## with non-informative prior
   # bMIND
   bMIND_noninf_train_est <- coexp_by_bMIND(train_list, prior_info = 'non-informative')
-  error_rec[['bMIND-noninf']][i_rep, , ] <- sapply(1:K, function(k){
-    eval_errors(bMIND_noninf_train_est[[k]], sim_setting$R[[k]], metrics)
+  error_rec[['bMIND-noninf']] <- sapply(1:K, function(k){
+    eval_errors(bMIND_noninf_train_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
   })
-
+  est_list[['bMIND-noninf']] <- bMIND_noninf_train_est
+  
   # sparse bMIND
   bMIND_noninf_tuning_result <- th_tuning(train_list, valid_list,
     coexp_method = 'bMIND',
@@ -267,29 +299,76 @@ for(i_rep in 1:n_rep){
   sparse_bMIND_noninf_train_th_est <- lapply(1:K, function(k){
     generalized_th(bMIND_noninf_train_est[[k]], bMIND_noninf_tuning_result$th[k], gen_th_op, F)
   })
-  error_rec[['s-bMIND-noninf']][i_rep, , ] <- sapply(1:K, function(k){
+  error_rec[['s-bMIND-noninf']] <- sapply(1:K, function(k){
     eval_errors(sparse_bMIND_noninf_train_th_est[[k]], sim_setting$R[[k]], metrics)
   })
+  est_list[['s-bMIND-noninf']] <- sparse_bMIND_noninf_train_th_est
 
   # -
   # evaluate ENIGMA
   # -
+  ## with L2 max norm
+  # ENIGMA
+  ENIGMA_train_est <- coexp_by_ENIGMA(train_list, norm = 'L2', seed = seeds[i_rep])
+  error_rec[['ENIGMA']] <- sapply(1:K, function(k){
+    eval_errors(ENIGMA_train_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
+  })
+  est_list[['ENIGMA']] <- ENIGMA_train_est  
 
-  # est <- mom_ls(sim_setting$props, bulk_exp, 
-  # methods = methods)
-  # saveRDS(est, 'new_est.rds')
+  # sparse ENIGMA
+  ENIGMA_tuning_result <- th_tuning(train_list, valid_list,
+    coexp_method = 'ENIGMA',
+    ctrl_list = list(norm = 'L2', seed = seeds[i_rep]))
+  sparse_ENIGMA_train_th_est <- lapply(1:K, function(k){
+    generalized_th(ENIGMA_train_est[[k]], ENIGMA_tuning_result$th[k], gen_th_op, F)
+  })
+  error_rec[['s-ENIGMA']] <- sapply(1:K, function(k){
+    eval_errors(sparse_ENIGMA_train_th_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
+  })
+  est_list[['s-ENIGMA']] <- sparse_ENIGMA_train_th_est
+  
+  ## with trace norm
+  # ENIGMA
+  #ENIGMA_trace_train_est <- coexp_by_ENIGMA(train_list, norm = 'trace', seed = seeds[i_rep])
+  #error_rec[['ENIGMA-trace']] <- sapply(1:K, function(k){
+  #  eval_errors(ENIGMA_trace_train_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
+  #})
+  #est_list[['ENIGMA-trace']] <- ENIGMA_trace_train_est
+
+  # sparse ENIGMA
+  #ENIGMA_trace_tuning_result <- th_tuning(train_list, valid_list,
+  #  coexp_method = 'ENIGMA',
+  #  ctrl_list = list(norm = 'trace', seed = seeds[i_rep]))
+  #sparse_ENIGMA_trace_train_th_est <- lapply(1:K, function(k){
+  #  generalized_th(ENIGMA_trace_train_est[[k]], ENIGMA_trace_tuning_result$th[k], gen_th_op, F)
+  #})
+  #error_rec[['s-ENIGMA-trace']] <- sapply(1:K, function(k){
+  #  eval_errors(sparse_ENIGMA_trace_train_th_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
+  #})
+  #est_list[['s-ENIGMA-trace']] <- sparse_ENIGMA_trace_train_th_est
+
+# }
+
+saveRDS(error_rec, sprintf('%s/n_rep_%i_i_rep_%i_error.rds', result_prefix, n_rep, i_rep))
+if(save_est){
+  saveRDS(est_list, sprintf('%s/n_rep_%i_i_rep_%i_est.rds', result_prefix, n_rep, i_rep))
+  if(i_rep==1) saveRDS(sim_setting, sprintf('%s/sim_setting.rds', result_prefix))
 }
-# saveRDS(sim_setting, 'new_setting.rds')
-# saveRDS(gene_exp_list, 'new.rds')
 
-for(coexp_m in coexp_methods[1:3]){
-  cat('\n')
-  print(coexp_m)
-  for(m in metrics){
-    print(m)
-    for(k in 1:K) print(sprintf('cell type %i: %.2f (%.2f)', k, mean(error_rec[[coexp_m]][, m, k]), sd(error_rec[[coexp_m]][, m, k])))
+if(n_rep == 1){
+  g_list <- list()
+  t <- 1
+  for(coexp_method in coexp_methods){
+    for(k in 1:K){
+        g <- plot_heatmap(est_list[[coexp_method]][[k]], sim_setting$sub_cl, 
+             title = sprintf('%s, ct %i', coexp_method, k))
+        g_list[[t]] <- g[[4]]
+        ggsave(sprintf('%s/%s_ct_%i.pdf', fig_prefix, coexp_method, k), g[[4]])
+        t <- t + 1
+    }
   }
+  saveRDS(g_list, sprintf('%s/all_methods.rds', fig_prefix))
 }
-
-
-
+#ggsave(sprintf('%s/all_methods.pdf', fig_prefix),
+#       grid.arrange(grobs = g_list, nrow = length(coexp_methods), ncol = K),
+#       width = 7 * K, height = 7 * length(coexp_methods))

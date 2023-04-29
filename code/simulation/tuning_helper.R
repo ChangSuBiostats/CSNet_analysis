@@ -23,7 +23,11 @@ th_tuning <- function(train_data, valid_data,
 	}else if(coexp_method == 'bMIND'){
 		train_est <- coexp_by_bMIND(train_data, prior_info = ctrl_list$prior)
 		valid_est <- coexp_by_bMIND(valid_data, prior_info = ctrl_list$prior)
-		K <- ncol(train_data$P)
+		K <- ncol(train_data$data$P)
+	}else if(coexp_method == 'ENIGMA'){
+		train_est <- coexp_by_ENIGMA(train_data, norm = ctrl_list$norm, seed = ctrl_list$seed)
+		valid_est <- coexp_by_ENIGMA(valid_data, norm = ctrl_list$norm, seed = ctrl_list$seed*2 + 19)
+		K <- ncol(train_data$data$P)
 	}
 	
 	# tune thresholding parameters 

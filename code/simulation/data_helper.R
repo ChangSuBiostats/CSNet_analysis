@@ -54,9 +54,9 @@ sim_exp <- function(cor_model, n, seed, sim_setting, props = NULL, verbose = F){
     # return(gene_exp_list)
     # obtain bulk expressions
     bulk_exp <- matrix(0, nrow = n, ncol = p)
-    for(k in 1:K){
-      bulk_exp <- bulk_exp + gene_exp_list[[k]] * sim_setting$props[,k]
-    }
     if(is.null(props)) props <- sim_setting$props
+    for(k in 1:K){
+      bulk_exp <- bulk_exp + gene_exp_list[[k]] * props[,k]
+    }
     return(list(data = list(X = bulk_exp, P = props), ct_specific_data = gene_exp_list))
 }

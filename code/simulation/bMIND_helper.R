@@ -66,6 +66,3 @@ coexp_by_bMIND <- function(data_list, prior_info = 'informative'){
 	return(R_est)
 }
 
-
-# enable sparse bMIND estimate
-# by a similar parameter tuning procedure as in CSNet

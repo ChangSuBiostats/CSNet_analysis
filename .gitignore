@@ -6,5 +6,6 @@
 *.Rproj
 *.DS_Store
 *.rds
+code/simulation/scripts/
 code/simulation/figures/
-code/simulation/results/
+code/simulation/results/MA_rho_0.5_0.5/
