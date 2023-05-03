@@ -99,8 +99,8 @@ K <- opt$K
 log_var <- opt$log_var
 # correlation model in ct-specific cluster
 cor_model <- opt$cor_model
-if(cor_model %in% c('AR', 'MA')){
-	# AR(1) strength
+if(cor_model %in% c('AR', 'MA', 'AR_10')){
+	# correlation strength
 	rhos <- c(opt$rho1, opt$rho2)
 }
 if(K == 2){
@@ -147,10 +147,10 @@ print(log_var)
 print(equal_strength)
 # set file prefix
 if(K == 2){
-	if(cor_model %in% c('AR', 'MA')){
+	if(cor_model %in% c('AR', 'MA', 'AR_10')){
 		cor_model_prefix <- sprintf('%s_rho_%.1f_%.1f', cor_model, rhos[1], rhos[2])
 	}else{
-		cor_model_prefix <- 'dcSBM'
+		cor_model_prefix <- cor_model
 	}
 	occ_prefix <- sprintf('log_var_%.1f_equal_strength_%s', log_var, equal_strength)
 	prefix <- sprintf('%s/K_%i/%s/n_%i_p_%i', 
@@ -190,7 +190,7 @@ sim_setting <- gen_sim_setting(cor_model,
 
 # simulate expression data & run methods
 # keep track of errors
-coexp_methods <- c('d-Bulk', 'Bulk', 'd-CSNet-ols', 'CSNet-ols', 'd-CSNet', 'CSNet', 'bMIND', 's-bMIND', 'bMIND-noninf', 's-bMIND-noninf', 'ENIGMA', 's-ENIGMA')#, 'ENIGMA-trace', 's-ENIGMA-trace')
+coexp_methods <- c('d-Bulk', 'Bulk', 'd-CSNet-ols', 'CSNet-ols', 'd-CSNet', 'CSNet', 'bMIND-inf', 's-bMIND-inf', 'bMIND', 's-bMIND', 'ENIGMA', 's-ENIGMA', 'oracle')#, 'ENIGMA-trace', 's-ENIGMA-trace')
 metrics <- c('F_norm', 'op_norm', 'FPR', 'TPR')
 error_mat <- matrix(NA, nrow = 4, ncol = K)
 colnames(error_mat) <- paste0('cell_type_', 1:K)
@@ -229,7 +229,6 @@ est_list <- list()
       eval_errors(train_cor_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
     })
     est_list[[sprintf('d-CSNet%s', settings_names[i])]] <- train_cor_est
-    print(train_cor_est[[1]][1:3,1:3])  
     # tune thresholding parameter with the independent validation data
     tuning_result <- th_tuning(train_list$data, valid_list$data,
       coexp_method = 'CSNet',
@@ -261,49 +260,52 @@ est_list <- list()
   est_list[['d-Bulk']] <- lapply(1:K, function(k) bulk_train_cor_est)
   
   # -
+  # evaluate oracle estimate
+  # -
+  oracle_train_cor_est <- lapply(1:K, function(k) cor(train_list$ct_specific_data[[k]]))
+  oracle_tuning_result <- lapply(1:K, function(k){
+    th_tuning(list(X=train_list$ct_specific_data[[k]]), list(X=valid_list$ct_specific_data[[k]]), coexp_method = 'Bulk')})
+  oracle_train_cor_th_est <- lapply(1:K, function(k){
+    generalized_th(oracle_train_cor_est[[k]], oracle_tuning_result[[k]]$th, gen_th_op, F)
+  })
+  error_rec[['d-oracle']] <- sapply(1:K, function(k){
+    eval_errors(oracle_train_cor_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
+  })
+  error_rec[['oracle']] <- sapply(1:K, function(k){
+    eval_errors(oracle_train_cor_th_est[[k]], sim_setting$R[[k]], metrics)
+  })
+  est_list[['d-oracle']] <- oracle_train_cor_est
+  est_list[['oracle']] <- oracle_train_cor_th_est
+
+  # -
   # evaluate bMIND
   # -
   
   ## with informative prior
-  # bMIND
-  bMIND_train_est <- coexp_by_bMIND(train_list, prior_info = 'informative')
-  error_rec[['bMIND']] <- sapply(1:K, function(k){
-    eval_errors(bMIND_train_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
-  })
-  est_list[['bMIND']] <- bMIND_train_est
+  prior_info_vec <- c('informative', 'non-informative')
+  suffix_vec <- c('-inf', '')
   
-  # sparse bMIND
-  bMIND_tuning_result <- th_tuning(train_list, valid_list,
-    coexp_method = 'bMIND',
-    ctrl_list = list(prior = 'informative'))
-  sparse_bMIND_train_th_est <- lapply(1:K, function(k){
-    generalized_th(bMIND_train_est[[k]], bMIND_tuning_result$th[k], gen_th_op, F)
-  })
-  error_rec[['s-bMIND']] <- sapply(1:K, function(k){
-    eval_errors(sparse_bMIND_train_th_est[[k]], sim_setting$R[[k]], metrics)
-  })
-  est_list[['s-bMIND']] <- sparse_bMIND_train_th_est
+  for(i in 1:2){
+    # bMIND
+    bMIND_train_est <- coexp_by_bMIND(train_list, prior_info = prior_info_vec[i])
+    error_rec[[sprintf('bMIND%s', suffix_vec[i])]] <- sapply(1:K, function(k){
+      eval_errors(bMIND_train_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
+    })
+    est_list[[sprintf('bMIND%s', suffix_vec[i])]] <- bMIND_train_est
+    
+    # sparse bMIND
+    bMIND_tuning_result <- th_tuning(train_list, valid_list,
+      coexp_method = 'bMIND',
+      ctrl_list = list(prior = prior_info_vec[i]))
+    sparse_bMIND_train_th_est <- lapply(1:K, function(k){
+      generalized_th(bMIND_train_est[[k]], bMIND_tuning_result$th[k], gen_th_op, F)
+    })
+    error_rec[[sprintf('s-bMIND%s', suffix_vec[i])]] <- sapply(1:K, function(k){
+      eval_errors(sparse_bMIND_train_th_est[[k]], sim_setting$R[[k]], metrics)
+    })
+    est_list[[sprintf('s-bMIND%s', suffix_vec[i])]] <- sparse_bMIND_train_th_est
+  }
   
-  ## with non-informative prior
-  # bMIND
-  bMIND_noninf_train_est <- coexp_by_bMIND(train_list, prior_info = 'non-informative')
-  error_rec[['bMIND-noninf']] <- sapply(1:K, function(k){
-    eval_errors(bMIND_noninf_train_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
-  })
-  est_list[['bMIND-noninf']] <- bMIND_noninf_train_est
-  
-  # sparse bMIND
-  bMIND_noninf_tuning_result <- th_tuning(train_list, valid_list,
-    coexp_method = 'bMIND',
-    ctrl_list = list(prior = 'non-informative'))
-  sparse_bMIND_noninf_train_th_est <- lapply(1:K, function(k){
-    generalized_th(bMIND_noninf_train_est[[k]], bMIND_noninf_tuning_result$th[k], gen_th_op, F)
-  })
-  error_rec[['s-bMIND-noninf']] <- sapply(1:K, function(k){
-    eval_errors(sparse_bMIND_noninf_train_th_est[[k]], sim_setting$R[[k]], metrics)
-  })
-  est_list[['s-bMIND-noninf']] <- sparse_bMIND_noninf_train_th_est
-
   # -
   # evaluate ENIGMA
   # -

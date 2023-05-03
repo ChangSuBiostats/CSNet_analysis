@@ -27,9 +27,10 @@ F_norm <- function(Sigma, Sigma_star){
 }
 
 op_norm <- function(Sigma, Sigma_star){
-  require(svd)
+  #require(svd)
   error <- Sigma - Sigma_star
-  s <- propack.svd(error,3)$d[1]
+  s <- svd(error)$d[1]
+  #s <- propack.svd(error,3)$d[1]
   return(s)
 }
 

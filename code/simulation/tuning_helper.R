@@ -39,6 +39,9 @@ th_tuning <- function(train_data, valid_data,
 			train_est_k <- generalized_th(train_est[[k]], th_grids[j, k], 
 				th_func, th_diag = F)
 			F_norm_rec[k, j, 1] <- norm(valid_est[[k]] - train_est_k, 'F')
+			valid_est_k <- generalized_th(valid_est[[k]], th_grids[j, k],
+				th_func, th_diag = F)
+			F_norm_rec[k, j, 2] <- norm(train_est[[k]] - valid_est_k, 'F')
 		}
 	}
 	# Found a bug

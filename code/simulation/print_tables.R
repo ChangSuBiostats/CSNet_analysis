@@ -36,17 +36,20 @@ for(i_rep in 1:n_rep){
 }
 
 if(setting == 'standard'){
-  coexp_methods <- c('Bulk', 'd-CSNet', 'CSNet', 'bMIND', 'ENIGMA')
+  coexp_methods <- c('Bulk', 'd-CSNet', 'CSNet', 'bMIND', 's-bMIND')
 }else if(setting == 'all'){
   coexp_methods <- c('Bulk', 'd-CSNet', 'CSNet', 'd-CSNet-ols', 'CSNet-ols', 'bMIND', 's-bMIND', 'bMIND-noninf', 's-bMIND-noninf', 'ENIGMA', 's-ENIGMA')#, 'ENIGMA-trace', 's-ENIGMA-trace')
 }else if(setting == 'reproduce'){
-  coexp_methods <- c('Bulk', 'd-CSNet-ols', 'CSNet-ols', 'bMIND-noninf')
+  coexp_methods <- c('Bulk', 'd-CSNet-ols', 'CSNet-ols', 'bMIND')
 }else if(setting == 'ols_vs_wls'){
   coexp_methods <- c('Bulk', 'd-CSNet-ols', 'd-CSNet', 'CSNet-ols', 'CSNet')
-}else if(setting == 'bMIND'){
-  coexp_methods <- c('Bulk', 'd-CSNet', 'CSNet', 'bMIND', 's-bMIND', 'bMIND-noninf', 's-bMIND-noninf')
+}else if(setting == 'bMIND-inf'){
+  coexp_methods <- c('bMIND-inf','s-bMIND-inf')
 }else if(setting == 'ENIGMA'){
-  coexp_methods <- c('Bulk', 'd-CSNet', 'CSNet', 'ENIGMA', 's-ENIGMA')
+  coexp_methods <- c('ENIGMA', 's-ENIGMA')
+}else if(setting == 'oracle'){
+  coexp_methods <- c('d-oracle', 'd-CSNet', 'oracle', 'CSNet')
 }
 
 print_a_setting(error_list, coexp_methods, n, p)
+cat('\\\\\\hline')

@@ -19,7 +19,7 @@ print_a_setting <- function(error_list, coexp_methods, n, p){
   for(coexp_method in coexp_methods){
     print_a_method(error_list[[coexp_method]], coexp_method)
   }
-  cat('\\\\\\hline')
+  # cat('\\\\\\hline')
 }
 
 print_a_method <- function(error_mat, coexp_method){
