@@ -52,4 +52,4 @@ if(setting == 'standard'){
 }
 
 print_a_setting(error_list, coexp_methods, n, p)
-cat('\\\\\\hline')
+#cat('\\\\\\hline')
