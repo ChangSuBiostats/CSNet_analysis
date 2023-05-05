@@ -39,6 +39,7 @@ error_methods_names <- names(error_list)
 if('d-oracle' %in% error_methods_names){
   error_methods_names['oracle' == error_methods_names] <- 's-oracle'
   error_methods_names['d-oracle' == error_methods_names] <- 'oracle' 
+  names(error_list) <- error_methods_names
 }
 
 
