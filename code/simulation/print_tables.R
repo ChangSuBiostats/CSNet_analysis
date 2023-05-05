@@ -35,6 +35,13 @@ for(i_rep in 1:n_rep){
   }
 }
 
+error_methods_names <- names(error_list)
+if('d-oracle' %in% error_methods_names){
+  error_methods_names['oracle' == error_methods_names] <- 's-oracle'
+  error_methods_names['d-oracle' == error_methods_names] <- 'oracle' 
+}
+
+
 if(setting == 'standard'){
   coexp_methods <- c('Bulk', 'd-CSNet', 'CSNet', 'bMIND', 's-bMIND')
 }else if(setting == 'all'){
@@ -42,13 +49,15 @@ if(setting == 'standard'){
 }else if(setting == 'reproduce'){
   coexp_methods <- c('Bulk', 'd-CSNet-ols', 'CSNet-ols', 'bMIND')
 }else if(setting == 'ols_vs_wls'){
-  coexp_methods <- c('Bulk', 'd-CSNet-ols', 'd-CSNet', 'CSNet-ols', 'CSNet')
+  coexp_methods <- c('d-CSNet-ols', 'd-CSNet', 'CSNet-ols', 'CSNet')
 }else if(setting == 'bMIND-inf'){
   coexp_methods <- c('bMIND-inf','s-bMIND-inf')
 }else if(setting == 'ENIGMA'){
-  coexp_methods <- c('ENIGMA', 's-ENIGMA')
+  coexp_methods <- c('d-CSNet', 'ENIGMA', 'CSNet', 's-ENIGMA')
 }else if(setting == 'oracle'){
-  coexp_methods <- c('d-oracle', 'd-CSNet', 'oracle', 'CSNet')
+  coexp_methods <- c('d-CSNet', 'oracle', 'CSNet', 's-oracle')
+}else if(setting == 'sparse_bMIND'){
+  coexp_methods <- c('d-CSNet', 'bMIND', 'CSNet', 's-bMIND')
 }
 
 print_a_setting(error_list, coexp_methods, n, p)
