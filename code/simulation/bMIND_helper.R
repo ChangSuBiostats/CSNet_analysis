@@ -5,10 +5,15 @@
 # the sample correlations of
 # cell-type-specific and sample-specific expressions estimated by bMIND
 
+
 coexp_by_bMIND <- function(data_list, prior_info = 'informative'){
 	# install.packages("remotes")
 	# remotes::install_github("randel/MIND")
+	# remotes::install_github('ChangSuBiostats/bMIND_remove_parallel')
 	require(MIND)
+	#source('bMIND/MIND/R/bmind_func.r')
+	#source('bMIND/MIND/R/bmind_de.r')
+	#source('bMIND/MIND/R/deconv_em_func.r')
 	p <- ncol(data_list$data$X)
 	n <- nrow(data_list$data$X)
 	K <- ncol(data_list$data$P)
@@ -57,7 +62,7 @@ coexp_by_bMIND <- function(data_list, prior_info = 'informative'){
 	deconv = bMIND(bulk = log2(bulk+1),
                    frac = frac,
                    sample_id = colnames(bulk),
-                   ncore = 1,
+                   ncore = NULL,
                    profile = prior$profile,
                    covariance = prior$covariance,
                    nu = nu,
