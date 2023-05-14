@@ -13,6 +13,7 @@ source('evaluation_helper.R')
 source('bMIND_helper.R')
 source('ENIGMA_helper.R')
 source('visualization_helper.R')
+source('sensitivity_helper.R')
 library(dplyr)
 library(nnls)
 library(ggplot2)
@@ -118,6 +119,7 @@ if(K == 2){
 # whether to conduct sensitivity analysis
 sensitivity <- opt$sensitivity == 'T'
 if(sensitivity){
+  print('Run sensitivity analysis')
   kappa <- opt$kappa
   b <- opt$b
 }
@@ -140,7 +142,7 @@ NB_exper_pars <- list(Tsize=200, S=6e+07)
 cv_mode <- 'independent'
 cor_struct <- 'three_clusters'
 gen_th_op <- 'SCAD'
-n_val <- 150 # number of samples for independent validation
+n_val <- n #opt$n_val # number of samples for independent validation
 exp_model <- 'NB'
 
 print(log_var)
@@ -161,7 +163,7 @@ if(K == 2){
 }
 
 if(sensitivity){
-	prefix <- sprintf('%s/%s/kappa_%.2f_b_%.2f', sensitivity, prefix, kappa, b)
+	prefix <- sprintf('%s/%s/kappa_%.2f_b_%.2f', 'sensitivity', prefix, kappa, b)
 }
 
 fig_prefix <- sprintf('figures/%s', prefix)
@@ -209,6 +211,14 @@ est_list <- list()
   train_list <- sim_exp(cor_model, n, seeds[i_rep], sim_setting, props = NULL, verbose=F)
   valid_list <- sim_exp(cor_model, n_val, seeds[i_rep]*2 + 10, sim_setting, 
     props = sim_setting$props[1:n_val, ],verbose=F)
+ 
+  if(sensitivity){ 
+    # update the proportions to be 'working' proportions (w/ bias & noise)
+    wk_train_P <- add_noise_to_pi(train_list$data$P, b, kappa, 1)
+    train_list$data$P <- wk_train_P
+    valid_list$data$P <- wk_train_P[1:n_val, ]
+    sim_setting$props <- wk_train_P
+  }
   
   # evaluate ct-specific co-expressions estimated by different methods
   # -
@@ -325,7 +335,7 @@ est_list <- list()
     generalized_th(ENIGMA_train_est[[k]], ENIGMA_tuning_result$th[k], gen_th_op, F)
   })
   error_rec[['s-ENIGMA']] <- sapply(1:K, function(k){
-    eval_errors(sparse_ENIGMA_train_th_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = T)
+    eval_errors(sparse_ENIGMA_train_th_est[[k]], sim_setting$R[[k]], metrics, dense_estimate = F)
   })
   est_list[['s-ENIGMA']] <- sparse_ENIGMA_train_th_est
   

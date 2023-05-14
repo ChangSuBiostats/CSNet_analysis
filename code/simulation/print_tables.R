@@ -15,10 +15,16 @@ opt = parse_args(opt_parser);
 result_prefix <- opt$result_prefix
 setting <- opt$setting
 
-n_p_setting <- strsplit(result_prefix, '/')[[1]][5]
+i_ind <- ifelse(grepl('sensitivity', result_prefix), 1, 0)
+n_p_setting <- strsplit(result_prefix, '/')[[1]][5 + i_ind]
 n <- strsplit(n_p_setting, '_')[[1]][2] %>% as.integer
 p <- strsplit(n_p_setting, '_')[[1]][4] %>% as.integer
-K <- strsplit(strsplit(result_prefix, '/')[[1]][3], '_')[[1]][2] %>% as.integer
+K <- strsplit(strsplit(result_prefix, '/')[[1]][3 + i_ind], '_')[[1]][2] %>% as.integer
+if(grepl('sensitivity', result_prefix)){
+  kappa_b_setting <- strsplit(result_prefix, '/')[[1]][7]
+  kappa <- strsplit(kappa_b_setting, '_')[[1]][2] %>% as.numeric
+  b <- strsplit(kappa_b_setting, '_')[[1]][4] %>% as.numeric
+}
 
 n_rep <- 200
 error_rec_1 <- readRDS(sprintf('%s/n_rep_%i_i_rep_%i_error.rds', result_prefix, n_rep, 1))
@@ -59,7 +65,24 @@ if(setting == 'standard'){
   coexp_methods <- c('d-CSNet', 'oracle', 'CSNet', 's-oracle')
 }else if(setting == 'sparse_bMIND'){
   coexp_methods <- c('d-CSNet', 'bMIND', 'CSNet', 's-bMIND')
+}else if(setting == 'sensitivity_CSNet'){
+  coexp_methods <- c('CSNet')
+}else if(setting == 'sensitivity_bMIND'){
+  coexp_methods <- c('s-bMIND')
 }
 
-print_a_setting(error_list, coexp_methods, n, p)
+if(grepl('sensitivity', result_prefix)){
+  # evaluate the difference between noisy proportions and true proportions
+  sim_setting <- readRDS(sprintf('%s/sim_setting.rds', result_prefix))
+  noisy_pi <- sim_setting$props
+  truth_prefix <- 'results/AR_10_rho_0.8_0.8/K_2/log_var_8.0_equal_strength_TRUE/n_600_p_100'
+  true_pi <- readRDS(sprintf('%s/sim_setting.rds', truth_prefix))$props
+  
+  rho_cor <- cor(noisy_pi[,1], true_pi[,1])
+  rMSE <- sqrt(mean((noisy_pi - true_pi)^2)) / mean(true_pi)
+  
+  print_a_sensitivity_setting(error_list, coexp_methods, kappa, b, rho_cor, rMSE)
+}else{
+  print_a_setting(error_list, coexp_methods, n, p)
+}
 #cat('\\\\\\hline')

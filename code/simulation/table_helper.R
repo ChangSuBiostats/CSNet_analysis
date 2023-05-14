@@ -22,12 +22,30 @@ print_a_setting <- function(error_list, coexp_methods, n, p){
   # cat('\\\\\\hline')
 }
 
+print_a_sensitivity_setting <- function(error_list, coexp_methods, kappa, b, rho_cor, rMSE){
+  cat('\n')
+  if(b == -0.4){
+    cat('\\\\\\hline')
+    cat(sprintf('\\multirow{%i}{*}{%.1f}',
+        2 * 5, kappa)) #, b, rho_cor, rMSE))
+  }else{
+    cat('\\\\\\cline{2-12}')
+    #cat(sprintf('& %.1f & %.2f & %.2f',
+    #    b, rho_cor, rMSE))
+  }
+  cat('\n')
+  cat('\n')
+  for(coexp_method in coexp_methods){
+    print_a_sensitivity_method(error_list[[coexp_method]], b, rho_cor, rMSE)
+  }
+}
+
 print_a_method <- function(error_mat, coexp_method){
   K <- length(error_mat)
   if(coexp_method != 'Bulk'){
-    cat('\\\\\\cline{3-11}')
+    #cat('\\\\\\cline{3-11}')
     cat('\n')
-    cat(sprintf('&& \\texttt{%s}', coexp_method))
+    cat(sprintf('& \\texttt{%s}', coexp_method))
   }else{
     cat('& \\texttt{Bulk}')
   }
@@ -50,6 +68,26 @@ print_a_method <- function(error_mat, coexp_method){
           ifelse(is.na(err_sd), '{-}', sprintf('(%.2f)', err_sd)),
           '}\\end{tabular}', sep='')
     }
+    }
+  }
+  cat('\n')
+}
+
+print_a_sensitivity_method <- function(error_mat, b, rho_cor, rMSE){
+  K <- length(error_mat)
+  cat('\n')
+  cat(sprintf('& %.1f & %.2f & %.2f', b, rho_cor, rMSE))
+  cat('\n')
+  #for(j in 1:ncol(error_mat[[1]])){
+  for(k in 1:K){
+    for(j in 1:ncol(error_mat[[1]])){
+    err_mean <- mean(error_mat[[k]][,j])
+    err_sd <- sd(error_mat[[k]][,j])
+      cat('& \\begin{tabular}[c]{@{}c@{}}',
+          ifelse(is.na(err_mean), '{-}', sprintf('%.2f', err_mean)),
+          '\\\\\\small{',
+          ifelse(is.na(err_sd), '{-}', sprintf('(%.2f)', err_sd)),
+          '}\\end{tabular}', sep='')
     }
   }
   cat('\n')

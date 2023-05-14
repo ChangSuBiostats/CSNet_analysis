@@ -1,0 +1,92 @@
+
+
+\\\hline\multirow{10}{*}{0.0}
+
+
+& -0.4 & 0.99 & 0.52
+& \begin{tabular}[c]{@{}c@{}}4.12\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.19\\\small{(0.26)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.12\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.93\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}5.32\\\small{(0.36)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.12\\\small{(0.38)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.31\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.85\\\small{(0.04)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& -0.2 & 1.00 & 0.26
+& \begin{tabular}[c]{@{}c@{}}3.36\\\small{(0.16)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.82\\\small{(0.21)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.10\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.93\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.30\\\small{(0.16)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.38\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.12\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.78\\\small{(0.05)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& 0.0 & 1.00 & 0.00
+& \begin{tabular}[c]{@{}c@{}}2.79\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.51\\\small{(0.18)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.10\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.94\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.00\\\small{(0.17)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.68\\\small{(0.13)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.11\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.75\\\small{(0.05)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& 0.2 & 0.99 & 0.24
+& \begin{tabular}[c]{@{}c@{}}2.32\\\small{(0.11)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.20\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.13\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.95\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}6.00\\\small{(0.51)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.41\\\small{(0.39)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.07\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.56\\\small{(0.06)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& 0.4 & 0.95 & 0.44
+& \begin{tabular}[c]{@{}c@{}}6.43\\\small{(0.21)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}5.68\\\small{(0.24)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.38\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.98\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}8.37\\\small{(0.34)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.22\\\small{(0.24)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.06\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.30\\\small{(0.05)}\end{tabular}
+
+\\\hline\multirow{10}{*}{0.9}
+
+
+& -0.4 & 0.82 & 0.59
+& \begin{tabular}[c]{@{}c@{}}13.89\\\small{(0.41)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}12.50\\\small{(0.39)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.33\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.93\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}24.52\\\small{(0.24)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}23.60\\\small{(0.23)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.30\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.79\\\small{(0.05)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& -0.2 & 0.83 & 0.40
+& \begin{tabular}[c]{@{}c@{}}15.16\\\small{(0.31)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}14.36\\\small{(0.31)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.26\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.94\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}26.33\\\small{(0.29)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}25.62\\\small{(0.29)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.28\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.78\\\small{(0.05)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& 0.0 & 0.83 & 0.29
+& \begin{tabular}[c]{@{}c@{}}15.57\\\small{(0.26)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}15.03\\\small{(0.26)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.23\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.94\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}29.13\\\small{(0.30)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}28.31\\\small{(0.29)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.24\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.75\\\small{(0.06)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& 0.2 & 0.83 & 0.34
+& \begin{tabular}[c]{@{}c@{}}15.86\\\small{(0.21)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}15.45\\\small{(0.21)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.23\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.94\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}24.00\\\small{(1.87)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}21.38\\\small{(2.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.12\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.57\\\small{(0.07)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& 0.4 & 0.79 & 0.47
+& \begin{tabular}[c]{@{}c@{}}17.33\\\small{(0.17)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}16.95\\\small{(0.17)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.25\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.95\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}25.70\\\small{(1.49)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}23.29\\\small{(1.70)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.18\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.61\\\small{(0.06)}\end{tabular}
+
+\\\hline\multirow{10}{*}{1.2}
+
+
+& -0.4 & 0.61 & 0.69
+& \begin{tabular}[c]{@{}c@{}}20.82\\\small{(0.35)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}19.99\\\small{(0.33)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.23\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.89\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}30.85\\\small{(0.21)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}29.48\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.31\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.72\\\small{(0.05)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& -0.2 & 0.63 & 0.55
+& \begin{tabular}[c]{@{}c@{}}22.26\\\small{(0.29)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}21.63\\\small{(0.28)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.22\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.91\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}30.69\\\small{(0.55)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}28.43\\\small{(0.88)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.30\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.73\\\small{(0.05)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& 0.0 & 0.63 & 0.48
+& \begin{tabular}[c]{@{}c@{}}22.68\\\small{(0.24)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}22.16\\\small{(0.23)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.23\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.93\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}13.63\\\small{(1.82)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}9.12\\\small{(2.08)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.06\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.12\\\small{(0.06)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& 0.2 & 0.62 & 0.47
+& \begin{tabular}[c]{@{}c@{}}23.20\\\small{(0.19)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}22.73\\\small{(0.19)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.25\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.94\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}8.43\\\small{(0.63)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}5.05\\\small{(0.31)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.02\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.06\\\small{(0.12)}\end{tabular}
+
+\\\cline{2-12}
+
+
+& 0.4 & 0.60 & 0.53
+& \begin{tabular}[c]{@{}c@{}}23.55\\\small{(0.16)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}23.10\\\small{(0.15)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.26\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.94\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}8.39\\\small{(0.66)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.50\\\small{(0.33)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.02\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.26\\\small{(0.09)}\end{tabular}
+\\\hline
