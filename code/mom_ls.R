@@ -11,6 +11,8 @@
 # least squares for moment-based regressions
 mom_ls <- function(P, X, 
 	methods = list(var='nnls', covar = 'wls')){
+  p <- ncol(X)
+  K <- ncol(P)
   P_2 <- P^2
   # mean regression
   mu <- apply(X, 2, function(x) nnls(P, x)$x)
