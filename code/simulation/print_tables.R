@@ -69,6 +69,8 @@ if(setting == 'standard'){
   coexp_methods <- c('CSNet')
 }else if(setting == 'sensitivity_bMIND'){
   coexp_methods <- c('s-bMIND')
+}else if(setting == 'small_p'){
+  coexp_methods <- c('d-CSNet', 'bMIND', 'ENIGMA', 'CSNet', 's-bMIND', 's-ENIGMA')
 }
 
 if(grepl('sensitivity', result_prefix)){

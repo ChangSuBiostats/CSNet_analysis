@@ -1,0 +1,40 @@
+
+\\\hline
+\multirow{24}{*}{150} & \multirow{12}{*}{\begin{tabular}[c]{@{}l@{}}$30$\end{tabular}}
+& \texttt{d-CSNet}
+& \begin{tabular}[c]{@{}c@{}}3.38\\\small{(0.19)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.88\\\small{(0.31)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}7.30\\\small{(0.58)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.75\\\small{(0.53)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{bMIND}
+& \begin{tabular}[c]{@{}c@{}}4.09\\\small{(0.19)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.60\\\small{(0.18)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}5.80\\\small{(0.38)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.59\\\small{(0.27)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{ENIGMA}
+& \begin{tabular}[c]{@{}c@{}}6.16\\\small{(0.30)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.97\\\small{(0.38)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}10.52\\\small{(0.23)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}9.65\\\small{(0.26)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{CSNet}
+& \begin{tabular}[c]{@{}c@{}}\bf{1.64}\\\small{\bf{(0.19)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{1.12}\\\small{\bf{(0.21)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.16}\\\small{\bf{(0.04)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.92}\\\small{\bf{(0.08)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{2.98}\\\small{\bf{(0.36)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{1.99}\\\small{\bf{(0.46)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.14}\\\small{\bf{(0.05)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.64}\\\small{\bf{(0.16)}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND}
+& \begin{tabular}[c]{@{}c@{}}2.87\\\small{(0.26)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.19\\\small{(0.33)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.36\\\small{(0.13)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.64\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.65\\\small{(0.47)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.46\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.25\\\small{(0.16)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.14\\\small{(0.13)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-ENIGMA}
+& \begin{tabular}[c]{@{}c@{}}6.15\\\small{(0.30)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.96\\\small{(0.38)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.97\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.98\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}10.49\\\small{(0.24)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}9.61\\\small{(0.26)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.94\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.99\\\small{(0.03)}\end{tabular}
+\\\hline
+\multirow{24}{*}{600} & \multirow{12}{*}{\begin{tabular}[c]{@{}l@{}}$30$\end{tabular}}
+& \texttt{d-CSNet}
+& \begin{tabular}[c]{@{}c@{}}1.94\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.29\\\small{(0.19)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.56\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.88\\\small{(0.27)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{bMIND}
+& \begin{tabular}[c]{@{}c@{}}3.38\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.45\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.43\\\small{(0.21)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.22\\\small{(0.09)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{ENIGMA}
+& \begin{tabular}[c]{@{}c@{}}4.86\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.70\\\small{(0.18)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}9.69\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}8.91\\\small{(0.13)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}{-}\\\small{{-}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{CSNet}
+& \begin{tabular}[c]{@{}c@{}}\bf{1.26}\\\small{\bf{(0.14)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.99}\\\small{\bf{(0.19)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.12}\\\small{\bf{(0.03)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.99}\\\small{\bf{(0.02)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{1.71}\\\small{\bf{(0.16)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{1.08}\\\small{\bf{(0.19)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.16}\\\small{\bf{(0.03)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.92}\\\small{\bf{(0.07)}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND}
+& \begin{tabular}[c]{@{}c@{}}3.33\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.44\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.85\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.94\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.27\\\small{(0.24)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.28\\\small{(0.11)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.53\\\small{(0.22)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.53\\\small{(0.23)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-ENIGMA}
+& \begin{tabular}[c]{@{}c@{}}4.86\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.70\\\small{(0.18)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}9.67\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}8.88\\\small{(0.13)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.93\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}
+\\\hline
