@@ -102,13 +102,23 @@ log_var <- opt$log_var
 cor_model <- opt$cor_model
 if(cor_model %in% c('AR', 'MA', 'AR_10')){
 	# correlation strength
-	rhos <- c(opt$rho1, opt$rho2)
+	if(K == 2){
+		rhos <- c(opt$rho1, opt$rho2)
+	}else if(K == 4){
+		rhos <- rep(0.8, 4)
+	}else if(K == 10){
+		rhos <- rep(0.8, 10)
+	}
 }
 if(K == 2){
 	# parameters for beta distribution, s.t. beta ~ beta(beta_1, beta_2)
 	beta1 <- opt$beta1
 	beta2 <- opt$beta2
 	betas <- c(beta1, beta2)
+}else if(K == 4){
+	betas <- c(5, 2, 2, 1)
+}else if(K == 10){
+	betas <- c(4.5, 1.8, 1.8, 0.9, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
 }
 
 ## parameters for CSNet regressions
@@ -148,9 +158,13 @@ exp_model <- 'NB'
 print(log_var)
 print(equal_strength)
 # set file prefix
-if(K == 2){
+#if(K == 2 | K == 4){
 	if(cor_model %in% c('AR', 'MA', 'AR_10')){
-		cor_model_prefix <- sprintf('%s_rho_%.1f_%.1f', cor_model, rhos[1], rhos[2])
+		if(K == 2){
+			cor_model_prefix <- sprintf('%s_rho_%.1f_%.1f', cor_model, rhos[1], rhos[2])
+		}else{
+			cor_model_prefix <- cor_model
+		}
 	}else{
 		cor_model_prefix <- cor_model
 	}
@@ -160,7 +174,8 @@ if(K == 2){
                 occ_prefix,
 		# ifelse((log_var != 8.0) | (!equal_strength), occ_prefix, 'standard'),
 		n, p)
-}
+#}
+
 
 if(sensitivity){
 	prefix <- sprintf('%s/%s/kappa_%.2f_b_%.2f', 'sensitivity', prefix, kappa, b)
@@ -190,9 +205,12 @@ sim_setting <- gen_sim_setting(cor_model,
 	NB_exper_pars = NB_exper_pars, 
 	verbose=F)
 
+print(warnings())
+
 # simulate expression data & run methods
 # keep track of errors
 coexp_methods <- c('d-Bulk', 'Bulk', 'd-CSNet-ols', 'CSNet-ols', 'd-CSNet', 'CSNet', 'bMIND-inf', 's-bMIND-inf', 'bMIND', 's-bMIND', 'ENIGMA', 's-ENIGMA', 'oracle')#, 'ENIGMA-trace', 's-ENIGMA-trace')
+if(K == 10) coexp_methods <- coexp_methods[c(1:6, 13)]
 metrics <- c('F_norm', 'op_norm', 'FPR', 'TPR')
 error_mat <- matrix(NA, nrow = 4, ncol = K)
 colnames(error_mat) <- paste0('cell_type_', 1:K)
@@ -287,10 +305,12 @@ est_list <- list()
   est_list[['d-oracle']] <- oracle_train_cor_est
   est_list[['oracle']] <- oracle_train_cor_th_est
 
+  print(warnings())
+
   # -
   # evaluate bMIND
   # -
-  
+  if(K != 10){
   ## with informative prior
   prior_info_vec <- c('informative', 'non-informative')
   suffix_vec <- c('-inf', '')
@@ -303,17 +323,22 @@ est_list <- list()
     })
     est_list[[sprintf('bMIND%s', suffix_vec[i])]] <- bMIND_train_est
     
-    # sparse bMIND
-    bMIND_tuning_result <- th_tuning(train_list, valid_list,
+    if(anyNA(error_rec[[sprintf('bMIND%s', suffix_vec[i])]])){
+      error_rec[[sprintf('s-bMIND%s', suffix_vec[i])]] <- matrix(NA, nrow = length(metrics), ncol = K)
+      est_list[[sprintf('s-bMIND%s', suffix_vec[i])]] <- lapply(1:K, function(k) diag(1, p))
+    }else{
+      # sparse bMIND
+      bMIND_tuning_result <- th_tuning(train_list, valid_list,
       coexp_method = 'bMIND',
       ctrl_list = list(prior = prior_info_vec[i]))
-    sparse_bMIND_train_th_est <- lapply(1:K, function(k){
-      generalized_th(bMIND_train_est[[k]], bMIND_tuning_result$th[k], gen_th_op, F)
-    })
-    error_rec[[sprintf('s-bMIND%s', suffix_vec[i])]] <- sapply(1:K, function(k){
-      eval_errors(sparse_bMIND_train_th_est[[k]], sim_setting$R[[k]], metrics)
-    })
-    est_list[[sprintf('s-bMIND%s', suffix_vec[i])]] <- sparse_bMIND_train_th_est
+      sparse_bMIND_train_th_est <- lapply(1:K, function(k){
+        generalized_th(bMIND_train_est[[k]], bMIND_tuning_result$th[k], gen_th_op, F)
+      })
+      error_rec[[sprintf('s-bMIND%s', suffix_vec[i])]] <- sapply(1:K, function(k){
+        eval_errors(sparse_bMIND_train_th_est[[k]], sim_setting$R[[k]], metrics)
+      })
+      est_list[[sprintf('s-bMIND%s', suffix_vec[i])]] <- sparse_bMIND_train_th_est
+    }
   }
   
   # -
@@ -360,6 +385,7 @@ est_list <- list()
   #est_list[['s-ENIGMA-trace']] <- sparse_ENIGMA_trace_train_th_est
 
 # }
+  }
 
 saveRDS(error_rec, sprintf('%s/n_rep_%i_i_rep_%i_error.rds', result_prefix, n_rep, i_rep))
 if(save_est){
@@ -372,9 +398,15 @@ if(n_rep == 1){
   t <- 1
   for(coexp_method in coexp_methods){
     for(k in 1:K){
-        g <- plot_heatmap(est_list[[coexp_method]][[k]], sim_setting$sub_cl, 
+	if(K != 10){
+		g <- plot_heatmap(est_list[[coexp_method]][[k]], sim_setting$sub_cl, 
              title = sprintf('%s, ct %i', coexp_method, k))
-        g_list[[t]] <- g[[4]]
+	}else{
+		g <- plot_heatmap(est_list[[coexp_method]][[k]], 
+				  lapply(1:4, function(j) sim_setting$sub_cl[[j]]),
+				  title = sprintf('%s, ct %i', coexp_method, k))
+	}
+	g_list[[t]] <- g[[4]]
         ggsave(sprintf('%s/%s_ct_%i.pdf', fig_prefix, coexp_method, k), g[[4]])
         t <- t + 1
     }

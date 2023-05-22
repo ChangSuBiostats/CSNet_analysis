@@ -6,6 +6,10 @@
 
 eval_errors <- function(R_hat, R, metrics, dense_estimate = F){
 	error_vec <- numeric(length(metrics))
+	if(anyNA(R_hat)){
+		error_vec <- rep(NA, length(metrics))
+		return(error_vec)
+	}
 	names(error_vec) <- metrics
 	for(m in metrics){
 		if(m == 'F_norm'){

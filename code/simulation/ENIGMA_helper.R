@@ -27,7 +27,7 @@ coexp_by_ENIGMA <- function(data_list, norm = 'L2', seed = 1){
   ## Build a reference matrix by taking the cell-type-specific means for each gene
   ## as suggested by 3 in https://github.com/WWXkenmo/ENIGMA/blob/master/vignettes/A-simple-guide-of-ENIGMA.pdf
   aggre_profile <- sapply(data_list$ct_specific_data, function(x) colMeans(x))
-  colnames(aggre_profile) <- paste0('ct_', 1:2)
+  colnames(aggre_profile) <- paste0('ct_', 1:K)
   rownames(aggre_profile) <- colnames(mixture_df)   
 
   ## use count data to construct the ENIGMA object as suggested by

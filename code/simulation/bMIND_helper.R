@@ -56,7 +56,7 @@ coexp_by_bMIND <- function(data_list, prior_info = 'informative'){
 	# obtain true cell type proportions
 	frac <- data_list$data$P
 	rownames(frac) <- colnames(bulk)
-	colnames(frac) <- c('ct_1', 'ct_2')
+	colnames(frac) <- paste0('ct_', 1:K)
 
 	# evaluate bMIND estimates
 	deconv = bMIND(bulk = log2(bulk+1),
