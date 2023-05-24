@@ -74,10 +74,11 @@ gen_sim_setting_AR_MA <- function(n, p, log_var,
 		sigma_sq_star_list <- lapply(1:K, function(k) rep(exp(log_var), p))
     		less_abun_celltypes <- (1:K)[!(1:K) %in% which.max(betas)]
     		if(!K_4_ctrl$equal_strength){
-      			sigma_sq_star_list[[4]][sub_cl[[4]]] <- rep(exp(log_var+3), cor_p)
-    		}
+      			sigma_sq_star_list[[4]][sub_cl[[4]]] <- rep(exp(log_var+2), cor_p)
+    			#sigma_sq_star_list[[4]] <- rep(exp(log_var+3), p)
+		}
     		for(k in less_abun_celltypes){
-      			sigma_sq_star_list[[k]][(4*cor_p+1):p] <- rep(exp(log_var-1), p-4*cor_p)
+      			sigma_sq_star_list[[k]][(4*cor_p+1):p] <- rep(exp(log_var+1), p-4*cor_p)
     		}
 	}
 
