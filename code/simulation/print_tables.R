@@ -8,12 +8,24 @@ option_list = list(
               help="which experiment to print", metavar="character"),
   make_option(c("--setting"), type="character",
               default="standard",
-              help="which set of methods to print", metavar="character"))
+              help="which set of methods to print", metavar="character"),
+  make_option(c("--metrics"), type="character",
+              default="full",
+              help="which set of metrics to print", metavar="character"))
 
 opt_parser = OptionParser(option_list=option_list);
 opt = parse_args(opt_parser);
 result_prefix <- opt$result_prefix
 setting <- opt$setting
+metrics <- opt$metrics
+
+if(metrics == 'full'){
+	metric_index <- 1:4
+}else if(metrics == 'error'){
+	metric_index <- 1:2
+}else if(metrics == 'selection'){
+	metric_index <- 3:4
+}
 
 i_ind <- ifelse(grepl('sensitivity', result_prefix), 1, 0)
 n_p_setting <- strsplit(result_prefix, '/')[[1]][5 + i_ind]
@@ -32,13 +44,32 @@ error_mat <- matrix(NA, nrow = n_rep, ncol = nrow(error_rec_1[[1]]))
 error_list <- lapply(1:length(error_rec_1), function(i) lapply(1:K, function(k) error_mat))
 names(error_list) <- names(error_rec_1)
 
+track_reps <- rep(T, n_rep)
 for(i_rep in 1:n_rep){
+  fn <- sprintf('%s/n_rep_%i_i_rep_%i_error.rds', result_prefix, n_rep, i_rep)
+  if(file.exists(fn)){
   tmp <- readRDS(sprintf('%s/n_rep_%i_i_rep_%i_error.rds', result_prefix, n_rep, i_rep))
   for(m in names(error_list)){
     for(k in 1:K){
       error_list[[m]][[k]][i_rep,] <- tmp[[m]][,k]
     }
   }
+  }else{
+    track_reps[i_rep] <- F
+  }
+}
+
+# remove replications that do not have results generated
+# due to simulated cell type proportions having (X^\top X) not invertable
+if(all(track_reps)){
+	print('all replications available')
+}else{
+	for(m in names(error_list)){
+		for(k in 1:K){
+			error_list[[m]][[k]] <- error_list[[m]][[k]][track_reps,]
+		}
+	}
+	print(sprintf('%s replications with results used', sum(track_reps)))
 }
 
 error_methods_names <- names(error_list)
@@ -85,6 +116,6 @@ if(grepl('sensitivity', result_prefix)){
   
   print_a_sensitivity_setting(error_list, coexp_methods, kappa, b, rho_cor, rMSE)
 }else{
-  print_a_setting(error_list, coexp_methods, n, p)
+  print_a_setting(error_list, coexp_methods, n, p, metric_index)
 }
 #cat('\\\\\\hline')

@@ -116,7 +116,7 @@ if(K == 2){
 	beta2 <- opt$beta2
 	betas <- c(beta1, beta2)
 }else if(K == 4){
-	betas <- c(5, 2, 2, 1)
+	betas <- c(5, 2, 2, 1) / 2
 }else if(K == 10){
 	betas <- c(4.5, 1.8, 1.8, 0.9, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
 }
