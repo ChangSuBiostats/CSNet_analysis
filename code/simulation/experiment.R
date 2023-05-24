@@ -118,7 +118,7 @@ if(K == 2){
 }else if(K == 4){
 	betas <- c(5, 2, 2, 1) / 2
 }else if(K == 10){
-	betas <- c(4.5, 1.8, 1.8, 0.9, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+	betas <- c(4.5, 1.8, 1.8, 0.9, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1) / 2
 }
 
 ## parameters for CSNet regressions
@@ -323,22 +323,17 @@ est_list <- list()
     })
     est_list[[sprintf('bMIND%s', suffix_vec[i])]] <- bMIND_train_est
     
-    if(anyNA(error_rec[[sprintf('bMIND%s', suffix_vec[i])]])){
-      error_rec[[sprintf('s-bMIND%s', suffix_vec[i])]] <- matrix(NA, nrow = length(metrics), ncol = K)
-      est_list[[sprintf('s-bMIND%s', suffix_vec[i])]] <- lapply(1:K, function(k) diag(1, p))
-    }else{
-      # sparse bMIND
-      bMIND_tuning_result <- th_tuning(train_list, valid_list,
+    # sparse bMIND
+    bMIND_tuning_result <- th_tuning(train_list, valid_list,
       coexp_method = 'bMIND',
       ctrl_list = list(prior = prior_info_vec[i]))
       sparse_bMIND_train_th_est <- lapply(1:K, function(k){
         generalized_th(bMIND_train_est[[k]], bMIND_tuning_result$th[k], gen_th_op, F)
       })
-      error_rec[[sprintf('s-bMIND%s', suffix_vec[i])]] <- sapply(1:K, function(k){
-        eval_errors(sparse_bMIND_train_th_est[[k]], sim_setting$R[[k]], metrics)
-      })
-      est_list[[sprintf('s-bMIND%s', suffix_vec[i])]] <- sparse_bMIND_train_th_est
-    }
+    error_rec[[sprintf('s-bMIND%s', suffix_vec[i])]] <- sapply(1:K, function(k){
+      eval_errors(sparse_bMIND_train_th_est[[k]], sim_setting$R[[k]], metrics)
+    })
+    est_list[[sprintf('s-bMIND%s', suffix_vec[i])]] <- sparse_bMIND_train_th_est
   }
   
   # -

@@ -67,7 +67,17 @@ coexp_by_bMIND <- function(data_list, prior_info = 'informative'){
                    covariance = prior$covariance,
                    nu = nu,
                    V_fe = diag(exp_prior_var, ncol(prior$profile)))
-	R_est <- lapply(1:K, function(k) cor(t(deconv$A[,k,])))
+	R_est <- lapply(1:K, function(k){
+				tmp <- cor(t(deconv$A[,k,]))
+				if(anyNA(tmp)){
+					# post-process the matrix if estimated cell-type-specific expression levels are constant across samples
+					n_cons <- apply(tmp, 1, function(x) all(is.na(x))) %>% length
+					print(sprintf('%i genes were estimated as constant by bMIND in cell type %i', n_cons, k))
+					tmp[is.na(tmp)] <- 0
+					diag(tmp) <- 1
+		   }
+		   return(tmp)
+		   })
 	return(R_est)
 }
 
