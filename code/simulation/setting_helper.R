@@ -77,6 +77,8 @@ gen_sim_setting_AR_MA <- function(n, p, log_var,
 		# we consider a gene cluster with independent expression yet different mean expression levels
 		# in two cell types
     		sigma_sq_2[(2*cor_p+1): p] <- rep(exp(log_var-1), p-2*cor_p) 
+		}else{
+			sigma_sq_2[(2*round(p/3)+1): p] <- rep(exp(log_var-1), p-2*cor_p)
 		}
 		sigma_sq_star_list <- list(sigma_sq_1, sigma_sq_2)
 	}else if(K == 4 | K == 10){
