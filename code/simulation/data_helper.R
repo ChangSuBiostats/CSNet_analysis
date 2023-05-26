@@ -24,15 +24,16 @@ sim_exp <- function(cor_model, n, seed, sim_setting, props = NULL, verbose = F){
     gene_exp_mat <- matrix(0, n, p)
     
     # generate correlated expressions
-    if(cor_model != 'dcSBM'){
+   # if(cor_model != 'dcSBM'){
     	tmp_cor <- simu_NB_obs(n,
                            NB_par_list[[k]],
                            1:cor_p,
                            model=cor_model,
                            seed=ct_specific_seed)
-    }
+   # }
     gene_exp_mat[, sub_cl[[k]]] <- tmp_cor
 
+    if(cor_model != 'real_data'){
     # generate independent NB observations
     tmp_indpt <- matrix(NA, n, p-cor_p)
     # extract mean and variance statistics for independent genes
@@ -49,8 +50,11 @@ sim_exp <- function(cor_model, n, seed, sim_setting, props = NULL, verbose = F){
         mu = gene_mu)
     }
     gene_exp_mat[, indpt_ind] <- tmp_indpt
-    gene_exp_list[[k]] <- gene_exp_mat
     }
+
+    gene_exp_list[[k]] <- gene_exp_mat
+    
+  }
     # return(gene_exp_list)
     # obtain bulk expressions
     bulk_exp <- matrix(0, nrow = n, ncol = p)

@@ -74,7 +74,11 @@ option_list = list(
   # whether to save estimates
   make_option(c("--save_est"), type="character", default="F",
           help="whether to save co-expression estimates from all methods",
-          metavar="character")
+          metavar="character"),
+  # thresholds for co-expression matrix estimated from real data
+  make_option(c("--real_threshold"), type="character", default="th_0.6",
+	      help="how to threshold the sample correlation matrix from real data",
+	      metavar="character")
 )
 
 opt_parser = OptionParser(option_list=option_list);
@@ -100,7 +104,7 @@ K <- opt$K
 log_var <- opt$log_var
 # correlation model in ct-specific cluster
 cor_model <- opt$cor_model
-if(cor_model %in% c('AR', 'MA', 'AR_10')){
+#if(cor_model %in% c('AR', 'MA', 'AR_10')){
 	# correlation strength
 	if(K == 2){
 		rhos <- c(opt$rho1, opt$rho2)
@@ -109,7 +113,9 @@ if(cor_model %in% c('AR', 'MA', 'AR_10')){
 	}else if(K == 10){
 		rhos <- rep(0.8, 10)
 	}
-}
+#}
+if(cor_model == 'real_data') real_threshold <- opt$real_threshold
+
 if(K == 2){
 	# parameters for beta distribution, s.t. beta ~ beta(beta_1, beta_2)
 	beta1 <- opt$beta1
@@ -165,6 +171,8 @@ print(equal_strength)
 		}else{
 			cor_model_prefix <- cor_model
 		}
+	}else if(cor_model == 'real_data'){
+		cor_model_prefix <- sprintf('%s_%s', cor_model, real_threshold)
 	}else{
 		cor_model_prefix <- cor_model
 	}
@@ -202,6 +210,7 @@ sim_setting <- gen_sim_setting(cor_model,
 	K, betas, 
 	AR_MA_ctrl = list(rhos = rhos),
 	K_4_ctrl = list(equal_strength = equal_strength),
+	real_ctrl = list(real_threshold = real_threshold),
 	NB_exper_pars = NB_exper_pars, 
 	verbose=F)
 
@@ -388,7 +397,7 @@ if(save_est){
   if(i_rep==1) saveRDS(sim_setting, sprintf('%s/sim_setting.rds', result_prefix))
 }
 
-if(n_rep == 1){
+if(n_rep == 1 & cor_model != 'real_data'){
   g_list <- list()
   t <- 1
   for(coexp_method in coexp_methods){

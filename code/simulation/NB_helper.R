@@ -244,7 +244,7 @@ gen_cor_NB_copula <- function(n, cor_mat, sigma_sq, mu){
 
     size_vec <- mu^2 / (sigma_sq - mu)
     for (i in 1:p){
-      exp_matrix[i,] <- qnbinom(copula[i,], mu = mu, size = size_vec[i])
+      exp_matrix[i,] <- qnbinom(copula[i,], mu = mu[i], size = size_vec[i])
     }
     return(exp_matrix %>% t)
 }
@@ -257,7 +257,7 @@ gen_cor_NB_copula <- function(n, cor_mat, sigma_sq, mu){
 # using two steps:
 # 1. AR(1) model with specified rho
 # 2. Random permutation to remove ordering
-gen_cor <- function(p, rho = 0.3, to_permu=F, model='MA'){
+gen_cor <- function(p, rho = 0.3, to_permu=F, model='MA', k=1, real_threshold='th_0.6'){
   cor_m <- matrix(0, nrow = p, ncol = p)
   if(grepl('AR', model)){
     # 1. generate a matrix using AR(1) model
@@ -283,8 +283,10 @@ gen_cor <- function(p, rho = 0.3, to_permu=F, model='MA'){
     for(i in 1:(p-1)){
       cor_m[i, (i+1):min(i+m,p)] <- rho
     }
-  }else if(modell == 'dcSBM'){
-    cor_m <- read.table()
+  }else if(model == 'real_data'){
+    ct <- ifelse(k == 1, 'Excitatory Neurons', 'Oligodendrocytes')
+    fname <- sprintf('data/%s_p_%i_%s_spcones_cor.txt', ct, p, real_threshold) 
+    cor_m <- read.table(fname) %>% as.matrix()
   }
   # convert into a symmetric matrix with 1 on the diagonal
   # cor_m[upper.tri(cor_m)] <- cors
@@ -321,14 +323,15 @@ sim_vars <- function(p, lower, upper, seed){
 
 simu_NB_cov <- function(ngenes, rho, permu_ind, model='AR', to_permu = F, 
                         Tsize=10, S=6e+07, use_approx=T,v_lower=20000, v_upper=40000, seed=1,
-                        var_vec=NULL){
+                        var_vec=NULL, k=1, real_threshold='th_0.6'){
   print(sprintf('Simulating %s correlation structure under multivariate NB model', model))
   if(is.null(var_vec)){
     var_vec <- sim_vars(ngenes, v_lower, v_upper, seed)
   }
   phi_vec <- set_phi(var_vec, Tsize, S)
   # generate AR(1) correlation pattern, with possible random permutations
-  cor_m <- gen_cor(ngenes, rho=rho, to_permu=to_permu, model=model)
+  cor_m <- gen_cor(ngenes, rho=rho, to_permu=to_permu, model=model, 
+		   k=k, real_threshold=real_threshold)
   #use_approx <- ifelse(model == 'AR', T, F)
   size_m <- get_T_shared(cor_m, phi_vec, S, Tsize, use_approx)
   # true AR(1) covaraince matrix
