@@ -1,0 +1,69 @@
+
+[1] "all replications available"
+\\\hline
+\multirow{20}{*}{150} & \multirow{10}{*}{\begin{tabular}[c]{@{}l@{}}$100$\end{tabular}}
+& \texttt{Bulk}
+& \begin{tabular}[c]{@{}c@{}}25.01\\\small{(0.22)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}23.81\\\small{(0.21)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.32\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.51\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}26.45\\\small{(0.24)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}24.30\\\small{(0.23)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.40\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.41\\\small{(0.04)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{CSNet}
+& \begin{tabular}[c]{@{}c@{}}\bf{7.04}\\\small{\bf{(0.26)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{2.88}\\\small{\bf{(0.48)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.25}\\\small{\bf{(0.03)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.56}\\\small{\bf{(0.03)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{9.44}\\\small{\bf{(0.28)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{6.25}\\\small{\bf{(0.58)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.07}\\\small{\bf{(0.03)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.14}\\\small{\bf{(0.06)}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND}
+& \begin{tabular}[c]{@{}c@{}}8.61\\\small{(0.15)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}6.49\\\small{(0.27)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.26\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.38\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}10.33\\\small{(0.35)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}7.05\\\small{(0.07)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.21\\\small{(0.05)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.21\\\small{(0.05)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-ENIGMA}
+& \begin{tabular}[c]{@{}c@{}}20.22\\\small{(0.48)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}17.30\\\small{(0.57)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.99\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.99\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}36.64\\\small{(0.41)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}34.77\\\small{(0.43)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-oracle}
+& \begin{tabular}[c]{@{}c@{}}5.97\\\small{(0.30)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.70\\\small{(0.57)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.30\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.65\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}6.11\\\small{(0.32)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.88\\\small{(0.57)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.30\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.65\\\small{(0.03)}\end{tabular}
+[1] "all replications available"
+\\\cline{2-11}
+& \multirow{10}{*}{\begin{tabular}[c]{@{}l@{}}$200$\end{tabular}}
+& \texttt{Bulk}
+& \begin{tabular}[c]{@{}c@{}}48.93\\\small{(0.30)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}47.81\\\small{(0.31)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.18\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.30\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}49.78\\\small{(0.31)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}48.33\\\small{(0.31)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.21\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.22\\\small{(0.03)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{CSNet}
+& \begin{tabular}[c]{@{}c@{}}\bf{8.67}\\\small{\bf{(0.13)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{3.47}\\\small{\bf{(0.34)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.12}\\\small{\bf{(0.01)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.31}\\\small{\bf{(0.02)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{9.96}\\\small{\bf{(0.03)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{5.38}\\\small{\bf{(0.03)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.00}\\\small{\bf{(0.00)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.00}\\\small{\bf{(0.00)}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND}
+& \begin{tabular}[c]{@{}c@{}}9.12\\\small{(0.11)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.95\\\small{(0.17)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.10\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.23\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}10.89\\\small{(0.24)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}5.27\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.09\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.09\\\small{(0.02)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-ENIGMA}
+& \begin{tabular}[c]{@{}c@{}}36.52\\\small{(0.74)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}32.70\\\small{(0.85)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}68.59\\\small{(0.62)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}66.40\\\small{(0.66)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-oracle}
+& \begin{tabular}[c]{@{}c@{}}7.51\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.28\\\small{(0.27)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.17\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.43\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}7.41\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.17\\\small{(0.27)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.17\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.43\\\small{(0.02)}\end{tabular}
+[1] "all replications available"
+\\\hline
+\multirow{20}{*}{600} & \multirow{10}{*}{\begin{tabular}[c]{@{}l@{}}$100$\end{tabular}}
+& \texttt{Bulk}
+& \begin{tabular}[c]{@{}c@{}}24.58\\\small{(0.10)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}23.79\\\small{(0.09)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.45\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.73\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}26.55\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}24.36\\\small{(0.11)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.55\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.61\\\small{(0.04)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{CSNet}
+& \begin{tabular}[c]{@{}c@{}}\bf{4.57}\\\small{\bf{(0.23)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{2.32}\\\small{\bf{(0.41)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.30}\\\small{\bf{(0.04)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.72}\\\small{\bf{(0.02)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{7.34}\\\small{\bf{(0.28)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{2.81}\\\small{\bf{(0.37)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.24}\\\small{\bf{(0.02)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.54}\\\small{\bf{(0.03)}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND}
+& \begin{tabular}[c]{@{}c@{}}8.00\\\small{(0.21)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}6.03\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.66\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.77\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}9.56\\\small{(0.18)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}6.73\\\small{(0.11)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.28\\\small{(0.06)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.32\\\small{(0.05)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-ENIGMA}
+& \begin{tabular}[c]{@{}c@{}}15.04\\\small{(0.19)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}12.58\\\small{(0.24)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.99\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.99\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}33.57\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}32.09\\\small{(0.20)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-oracle}
+& \begin{tabular}[c]{@{}c@{}}3.94\\\small{(0.22)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.30\\\small{(0.35)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.31\\\small{(0.04)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.75\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}4.38\\\small{(0.22)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}2.69\\\small{(0.35)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.31\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.75\\\small{(0.02)}\end{tabular}
+[1] "all replications available"
+\\\cline{2-11}
+& \multirow{10}{*}{\begin{tabular}[c]{@{}l@{}}$200$\end{tabular}}
+& \texttt{Bulk}
+& \begin{tabular}[c]{@{}c@{}}48.77\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}47.96\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.27\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.51\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}50.07\\\small{(0.15)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}48.49\\\small{(0.15)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.32\\\small{(0.03)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.36\\\small{(0.03)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{CSNet}
+& \begin{tabular}[c]{@{}c@{}}\bf{5.92}\\\small{\bf{(0.10)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{1.63}\\\small{\bf{(0.22)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.19}\\\small{\bf{(0.00)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.53}\\\small{\bf{(0.01)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{8.78}\\\small{\bf{(0.17)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{3.41}\\\small{\bf{(0.29)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.11}\\\small{\bf{(0.01)}}\end{tabular}& \begin{tabular}[c]{@{}c@{}}\bf{0.28}\\\small{\bf{(0.02)}}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-bMIND}
+& \begin{tabular}[c]{@{}c@{}}6.62\\\small{(0.08)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}3.38\\\small{(0.14)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.27\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.52\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}10.33\\\small{(0.15)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}5.01\\\small{(0.07)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.12\\\small{(0.02)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.18\\\small{(0.02)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-ENIGMA}
+& \begin{tabular}[c]{@{}c@{}}25.56\\\small{(0.34)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}23.64\\\small{(0.37)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}62.37\\\small{(0.32)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}61.18\\\small{(0.33)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.00\\\small{(0.00)}\end{tabular}
+\\\cline{3-11}
+&& \texttt{s-oracle}
+& \begin{tabular}[c]{@{}c@{}}5.04\\\small{(0.11)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.67\\\small{(0.22)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.22\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.60\\\small{(0.01)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}5.32\\\small{(0.12)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}1.86\\\small{(0.23)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.22\\\small{(0.00)}\end{tabular}& \begin{tabular}[c]{@{}c@{}}0.59\\\small{(0.01)}\end{tabular}
