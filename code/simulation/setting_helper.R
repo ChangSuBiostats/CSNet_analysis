@@ -8,6 +8,7 @@ gen_sim_setting <- function(cor_model,
 	K, betas, 
 	AR_MA_ctrl = list(rhos = c(0.9, 0.9)),
 	K_4_ctrl = list(equal_strength = T),
+	real_ctrl = list(real_threshold = 'th_0.6'),
 	NB_exper_pars = list(Tsize=200, S=6e+07), 
 	verbose=F){
 
@@ -16,6 +17,7 @@ gen_sim_setting <- function(cor_model,
 			cor_model, AR_MA_ctrl$rhos,
 			K, betas,
 			K_4_ctrl,
+			real_ctrl,
 			NB_exper_pars, 
 			verbose)
 	}else{
@@ -28,6 +30,7 @@ gen_sim_setting_AR_MA <- function(n, p, log_var,
 	cor_model, rhos,
 	K, betas, 
 	K_4_ctrl,
+	real_ctrl,
 	NB_exper_pars = list(Tsize=200, S=6e+07), 
 	verbose = F){
 
@@ -36,6 +39,7 @@ gen_sim_setting_AR_MA <- function(n, p, log_var,
 		K, log_var, cor_model))
 	
 	# set dimension and ids for cell-type-specific gene sets
+	if(cor_model != 'real_data'){
 	if(K == 2 | K == 4){
 		cor_p <- round(p / (K + 1))
 		sub_cl <- lapply(1:K, function(k) (((k-1)*cor_p+1) :(k*cor_p)))
@@ -46,6 +50,9 @@ gen_sim_setting_AR_MA <- function(n, p, log_var,
 		for(k in 5:8) sub_cl[[k]] <- sub_cl[[k-4]]
 		sub_cl[[9]] <- sub_cl[[1]]
 		sub_cl[[10]] <- sub_cl[[2]]
+	}}else{
+		cor_p <- p
+		sub_cl <- lapply(1:K, function(k) 1:p)
 	}
 	# simulate and fix cell type proportions
 	set.seed(1)
@@ -65,11 +72,13 @@ gen_sim_setting_AR_MA <- function(n, p, log_var,
 	if(K == 2){
 		sigma_sq_1 <- rep(exp(log_var), p)
 		sigma_sq_2 <- rep(exp(log_var), p)
+		if(cor_model != 'real_data'){
 		# to demonstrate the confounding effect of cell type proportions
-    	# we consider a gene cluster with independent expression yet different mean expression levels
-    	# in two cell types
-    	sigma_sq_2[(2*cor_p+1): p] <- rep(exp(log_var-1), p-2*cor_p) 
-    	sigma_sq_star_list <- list(sigma_sq_1, sigma_sq_2)
+		# we consider a gene cluster with independent expression yet different mean expression levels
+		# in two cell types
+    		sigma_sq_2[(2*cor_p+1): p] <- rep(exp(log_var-1), p-2*cor_p) 
+		}
+		sigma_sq_star_list <- list(sigma_sq_1, sigma_sq_2)
 	}else if(K == 4 | K == 10){
 		sigma_sq_star_list <- lapply(1:K, function(k) rep(exp(log_var), p))
     		less_abun_celltypes <- (1:K)[!(1:K) %in% which.max(betas)]
@@ -90,7 +99,9 @@ gen_sim_setting_AR_MA <- function(n, p, log_var,
 		NB_par_list[[k]] <- simu_NB_cov(cor_p, rho=rhos[k], model=cor_model,
                                     Tsize=NB_exper_pars[['Tsize']], S=NB_exper_pars[['S']],
                                     use_approx=T,
-                                    var_vec = sigma_sq_star_list[[k]][cor_ind])
+                                    var_vec = sigma_sq_star_list[[k]][cor_ind],
+				    k=k,
+				    real_threshold=real_ctrl$real_threshold)
         	Sigma_star <- diag(sigma_sq_star_list[[k]])
         	Sigma_star[cor_ind, cor_ind] <- NB_par_list[[k]][['cov']]
     		Sigma_star_list[[k]] <- Sigma_star
