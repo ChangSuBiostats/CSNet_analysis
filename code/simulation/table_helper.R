@@ -44,6 +44,10 @@ print_a_sensitivity_setting <- function(error_list, coexp_methods, kappa, b, rho
 
 print_a_method <- function(error_mat, coexp_method, first_method, metric_index = 1:4){
   K <- length(error_mat)
+  if(K == 10){
+    # if K=10, visualize only the first 4 cell types
+    K <- 4
+  }
   if(!first_method){
     cat('\\\\\\cline{3-11}')
     cat('\n')

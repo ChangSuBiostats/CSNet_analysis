@@ -102,6 +102,16 @@ if(setting == 'standard'){
   coexp_methods <- c('s-bMIND')
 }else if(setting == 'small_p'){
   coexp_methods <- c('d-CSNet', 'bMIND', 'ENIGMA', 'CSNet', 's-bMIND', 's-ENIGMA')
+}else if(setting == 'CSNet'){
+  coexp_methods <- c('Bulk', 'd-CSNet', 'CSNet')
+}else if(setting == 'full_minimum'){
+  coexp_methods <- c('Bulk', 'd-CSNet', 'CSNet', 'bMIND', 's-bMIND', 'ENIGMA', 's-ENIGMA', 'oracle', 's-oracle')
+}else if(setting == 'sparse_comparison'){
+  coexp_methods <- c('Bulk', 'CSNet', 's-bMIND', 's-ENIGMA', 's-oracle')
+}else if(setting == 'oracle_only'){
+  coexp_methods <- c('oracle', 's-oracle')
+}else if(setting == 'ENIGMA_only'){
+  coexp_methods <- c('ENIGMA', 's-ENIGMA')
 }
 
 if(grepl('sensitivity', result_prefix)){

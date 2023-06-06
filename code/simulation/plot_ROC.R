@@ -63,7 +63,7 @@ for(k in 1:K){
   # extract entries with true co-expression !=0
   R_star <- sim_setting$R[[k]]
   truths <- list()
-  for(i_rep in 1:n_rep) truths[[i_rep]] <- as.numeric(R_star[upper.tri(R_star)] > 0)
+  for(i_rep in 1:n_rep) truths[[i_rep]] <- as.numeric(R_star[upper.tri(R_star)] != 0)
   # evaluate the ROC curves for different methods
   for(coexp_m in coexp_methods){
     #print(sapply(pred_list[[k]][[coexp_m]], length))
