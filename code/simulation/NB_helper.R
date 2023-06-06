@@ -284,9 +284,21 @@ gen_cor <- function(p, rho = 0.3, to_permu=F, model='MA', k=1, real_threshold='t
       cor_m[i, (i+1):min(i+m,p)] <- rho
     }
   }else if(model == 'real_data'){
-    ct <- ifelse(k == 1, 'Excitatory Neurons', 'Oligodendrocytes')
-    fname <- sprintf('data/%s_p_%i_%s_spcones_cor.txt', ct, p, real_threshold) 
-    cor_m <- read.table(fname) %>% as.matrix()
+    if(!grepl('same_struct', real_threshold)){
+      ct <- ifelse(k == 1, 'Excitatory Neurons', 'Oligodendrocytes')
+      fname <- sprintf('data/%s_p_%i_%s_spcones_cor.txt', ct, p, real_threshold) 
+      cor_m <- read.table(fname) %>% as.matrix()
+    }else{
+      ct <- 'Excitatory Neurons'
+      real_threshold_short <- gsub('_same_struct', '', real_threshold)
+      fname <- sprintf('data/%s_p_%i_%s_spcones_cor.txt', ct, p, real_threshold_short)
+      cor_m <- read.table(fname) %>% as.matrix()
+      set.seed(1)
+      if(k == 2){
+        permu_inds <- sample(p, p, replace = F)
+        cor_m <- cor_m[permu_inds, permu_inds]
+      }
+    }
   }
   # convert into a symmetric matrix with 1 on the diagonal
   # cor_m[upper.tri(cor_m)] <- cors
@@ -336,11 +348,14 @@ simu_NB_cov <- function(ngenes, rho, permu_ind, model='AR', to_permu = F,
   size_m <- get_T_shared(cor_m, phi_vec, S, Tsize, use_approx)
   # true AR(1) covaraince matrix
   cov_m_target <- cor_m * outer(sqrt(var_vec), sqrt(var_vec))
-  # approximated AR(1) covariance matrix
-  cov_m_truth <- size_m * outer(phi_vec, phi_vec) * S^2
-  diag(cov_m_truth) <- var_vec
-  # if use_approx=F, then these two matrices should be the same
-  
+  if(model %in% c('AR', 'MA')){
+    # approximated AR(1) covariance matrix
+    cov_m_truth <- size_m * outer(phi_vec, phi_vec) * S^2
+    diag(cov_m_truth) <- var_vec
+    # if use_approx=F, then these two matrices should be the same
+  }else{
+    cov_m_truth <- cov_m_target
+  }
   # apply permutation after the sharing is simulated
   if(to_permu){
     cor_m <- cor_m[permu_ind, permu_ind]
