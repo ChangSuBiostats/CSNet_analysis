@@ -76,7 +76,7 @@ option_list = list(
           help="whether to save co-expression estimates from all methods",
           metavar="character"),
   # thresholds for co-expression matrix estimated from real data
-  make_option(c("--real_threshold"), type="character", default="th_0.6",
+  make_option(c("--real_threshold"), type="character", default="th_0.6_same_struct",
 	      help="how to threshold the sample correlation matrix from real data",
 	      metavar="character")
 )
@@ -290,12 +290,16 @@ est_list <- list()
   bulk_train_cor_th_est <- lapply(1:K, function(k){
     generalized_th(bulk_train_cor_est, bulk_tuning_result$th, gen_th_op, F)
   }) # same for two cell types
+  # Bulk estimates
   error_rec[['Bulk']] <- sapply(1:K, function(k){
     eval_errors(bulk_train_cor_th_est[[k]], sim_setting$R[[k]], metrics)
   })
   est_list[['Bulk']] <- bulk_train_cor_th_est
+  # d-bulk estimates
   est_list[['d-Bulk']] <- lapply(1:K, function(k) bulk_train_cor_est)
-  
+  error_rec[['d-Bulk']] <- sapply(1:K, function(k){
+    eval_errors(bulk_train_cor_est, sim_setting$R[[k]], metrics)
+  })
   # -
   # evaluate oracle estimate
   # -
