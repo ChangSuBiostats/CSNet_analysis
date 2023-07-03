@@ -7,7 +7,8 @@ plot_heatmap <- function(cor_m, sub_cl, title,
                          legend = T,
                          annotation_legend = T,
 			 annotation_names = T,
-			 silent = F){
+			 silent = F,
+			 cw = 2){
   require(pheatmap)
   require(RColorBrewer)
   # color for heatmap
@@ -53,7 +54,7 @@ plot_heatmap <- function(cor_m, sub_cl, title,
                     annotation_legend = annotation_legend,
                     legend = legend,
 		    annotation_names_row = annotation_names, annotation_names_col = annotation_names,
-                    cellwidth = 2, cellheight = 2,
+                    cellwidth = cw, cellheight = cw,
 		    silent = silent)
   h$gtable$grobs[[1]]$gp <- gpar(fontsize = 25, fontfamily = 'sans')
   return(h)
