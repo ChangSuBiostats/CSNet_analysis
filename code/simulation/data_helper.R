@@ -33,7 +33,7 @@ sim_exp <- function(cor_model, n, seed, sim_setting, props = NULL, verbose = F){
    # }
     gene_exp_mat[, sub_cl[[k]]] <- tmp_cor
 
-    if(cor_model != 'real_data'){
+    #if(cor_model != 'real_data'){
     # generate independent NB observations
     tmp_indpt <- matrix(NA, n, p-cor_p)
     # extract mean and variance statistics for independent genes
@@ -50,7 +50,7 @@ sim_exp <- function(cor_model, n, seed, sim_setting, props = NULL, verbose = F){
         mu = gene_mu)
     }
     gene_exp_mat[, indpt_ind] <- tmp_indpt
-    }
+    #}
 
     gene_exp_list[[k]] <- gene_exp_mat
     

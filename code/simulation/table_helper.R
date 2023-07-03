@@ -24,6 +24,7 @@ print_a_setting <- function(error_list, coexp_methods, n, p, metric_index = 1:4)
   # cat('\\\\\\hline')
 }
 
+
 print_a_sensitivity_setting <- function(error_list, coexp_methods, kappa, b, rho_cor, rMSE){
   cat('\n')
   if(b == -0.4){

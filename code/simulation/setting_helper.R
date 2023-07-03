@@ -10,7 +10,8 @@ gen_sim_setting <- function(cor_model,
 	K_4_ctrl = list(equal_strength = T),
 	real_ctrl = list(real_threshold = 'th_0.6'),
 	NB_exper_pars = list(Tsize=200, S=6e+07), 
-	verbose=F){
+	verbose=F,
+	equal_sigma_sq = F){
 
 	if(cor_model != 'dcSBM'){
 		sim_setting <- gen_sim_setting_AR_MA(n, p, log_var, 
@@ -19,7 +20,8 @@ gen_sim_setting <- function(cor_model,
 			K_4_ctrl,
 			real_ctrl,
 			NB_exper_pars, 
-			verbose)
+			verbose,
+			equal_sigma_sq)
 	}else{
 		
 	}
@@ -32,14 +34,15 @@ gen_sim_setting_AR_MA <- function(n, p, log_var,
 	K_4_ctrl,
 	real_ctrl,
 	NB_exper_pars = list(Tsize=200, S=6e+07), 
-	verbose = F){
+	verbose = F,
+	equal_sigma_sq = F){
 
 	source('NB_helper.R')
 	print(sprintf('Generate simulation parameters for a K=%i, log_var=%.1f, %s model', 
 		K, log_var, cor_model))
 	
 	# set dimension and ids for cell-type-specific gene sets
-	if(cor_model != 'real_data'){
+	#if(cor_model != 'real_data'){
 	if(K == 2 | K == 4){
 		cor_p <- round(p / (K + 1))
 		sub_cl <- lapply(1:K, function(k) (((k-1)*cor_p+1) :(k*cor_p)))
@@ -50,10 +53,10 @@ gen_sim_setting_AR_MA <- function(n, p, log_var,
 		for(k in 5:8) sub_cl[[k]] <- sub_cl[[k-4]]
 		sub_cl[[9]] <- sub_cl[[1]]
 		sub_cl[[10]] <- sub_cl[[2]]
-	}}else{
-		cor_p <- p
-		sub_cl <- lapply(1:K, function(k) 1:p)
-	}
+	}#}else{
+	#	cor_p <- p
+	#	sub_cl <- lapply(1:K, function(k) 1:p)
+	#}
 	# simulate and fix cell type proportions
 	set.seed(1)
 	if(K == 2){
@@ -72,13 +75,15 @@ gen_sim_setting_AR_MA <- function(n, p, log_var,
 	if(K == 2){
 		sigma_sq_1 <- rep(exp(log_var), p)
 		sigma_sq_2 <- rep(exp(log_var), p)
-		if(cor_model != 'real_data'){
-		# to demonstrate the confounding effect of cell type proportions
-		# we consider a gene cluster with independent expression yet different mean expression levels
-		# in two cell types
-    		sigma_sq_2[(2*cor_p+1): p] <- rep(exp(log_var-1), p-2*cor_p) 
-		}else{
-			sigma_sq_2[(2*round(p/3)+1): p] <- rep(exp(log_var+1), p-2*round(p/3))
+		#if(cor_model != 'real_data'){
+		if(!equal_sigma_sq){
+			# to demonstrate the confounding effect of cell type proportions
+			# we consider a gene cluster with independent expression yet different mean expression levels
+			# in two cell types
+    			sigma_sq_2[(2*cor_p+1): p] <- rep(exp(log_var+1), p-2*cor_p) 
+			#}else{
+			#	sigma_sq_2[(2*round(p/3)+1): p] <- rep(exp(log_var+1), p-2*round(p/3))
+			#}
 		}
 		sigma_sq_star_list <- list(sigma_sq_1, sigma_sq_2)
 	}else if(K == 4 | K == 10){

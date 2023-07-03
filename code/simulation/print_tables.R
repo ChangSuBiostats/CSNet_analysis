@@ -112,6 +112,10 @@ if(setting == 'standard'){
   coexp_methods <- c('oracle', 's-oracle')
 }else if(setting == 'ENIGMA_only'){
   coexp_methods <- c('ENIGMA', 's-ENIGMA')
+}else if(setting == 'dense'){
+  coexp_methods <- c('d-Bulk', 'd-CSNet', 'bMIND', 'ENIGMA')
+}else if(setting == 'sparse'){
+  coexp_methods <- c('Bulk', 'CSNet', 's-bMIND', 's-ENIGMA')
 }
 
 if(grepl('sensitivity', result_prefix)){
