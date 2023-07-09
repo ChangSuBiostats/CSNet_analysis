@@ -82,7 +82,7 @@ for(k in 1:K){
   # make AUC plot
   # https://mycolor.space/?hex=%23CA6277&sub=1
   color_palette <- c('#0090DB', '#CA6277', '#52922C', '#835B8A')
-  names(color_palette) <- c('Bulk', 'CSNet', 'bMIND', 'ENIGMA')
+  names(color_palette) <- c('Bulk', 'CSNet', 's-bMIND', 's-ENIGMA')
   lty_list <- c('dotted', 'solid', 'dotdash', 'longdash')
 
   if(n_methods < 4){
@@ -94,14 +94,14 @@ for(k in 1:K){
   # Code reference: https://mlr.mlr-org.com/articles/tutorial/roc_analysis.html
   # https://preludeinr.com/graphs-and-plots/adding-elements-to-an-existing-graph/
   pdf(sprintf('%s/ROC_curves_ct_%i_%s.pdf', fig_prefix, k, setting), width = 5, height = 5)
-  par(cex.axis=1, cex.lab=1.2, cex.main=1.8, mar=c(4.5,4.5,5,1))
+  par(cex.axis=1.5, cex.lab=1.5, cex.main=2.3, mar=c(4.5,4.5,5,1))
   # Bulk
   plot(perf_list[[1]],
         avg='vertical',
         spread.estimate='stderror',
         lwd=3,
         # main=sprintf('(n,p)=(%i,%i), m=%s', n, p, ifelse(k==1, '2/3', '1/3')),
-        main = sprintf('p=%i', p),
+        main = NULL, # sprintf('p=%i', p),
         lty = lty_list[1],
         ylab='True Positive Rate',
         xlab='False Positive Rate',
@@ -140,16 +140,16 @@ for(k in 1:K){
            bty="o",               # The box type for the whole legend
            lwd=4,
            pt.cex=1.4,            # Expansion factor for symbols
-           cex=1.55)
+           cex=1.5)
 
   points(selected_points[,1],
          selected_points[,2],
-         cex=1.25,
+         cex=1.2,
          cex.axis=1.5,
-         pch=4, col=alpha(color_palette[2],0.5))
+         pch=4, col=alpha(color_palette[2],0.3))
   
   n_setting <- sprintf('n=%i', n)
-  text(0.8, ifelse(setting == 'standard', 0.45, 0.55), n_setting, cex = 1.8, font = 2) 
+  text(0.8, ifelse(setting == 'standard', 0.47, 0.57), n_setting, cex = 2.3, font = 2) 
   dev.off()
 
 }
