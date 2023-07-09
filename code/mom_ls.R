@@ -10,12 +10,14 @@
 
 # least squares for moment-based regressions
 mom_ls <- function(P, X, 
-	methods = list(var='nnls', covar = 'wls')){
+	methods = list(var='nnls', covar = 'wls'),
+	weight_th = NULL){
+	require(nnls)
   p <- ncol(X)
   K <- ncol(P)
   P_2 <- P^2
   # mean regression
-  mu <- apply(X, 2, function(x) nnls(P, x)$x)
+  mu <- apply(X, 2, function(x) nnls::nnls(P, x)$x)
   M <- P %*% mu
   # variance regression
   Sigma_array <- array(NA, c(p, p, K))
@@ -41,10 +43,17 @@ mom_ls <- function(P, X,
   	for(j in (i+1):p){
   		if(methods$covar == 'wls'){
   			w <- sqrt(obs_w[,i] * obs_w[,j])
+			# set minimal weights
+			# to avoid numerical issues with evaluating the inverse of design matrix
+			min_w <- ifelse(is.null(weight_th), 0, weight_th)
+			w[w < min_w] <- min_w
   		}
   		P_2_w <- P_2 / w
   		y_w <- X_centered[, i] * X_centered[, j] / w
-  		Sigma_array[j, i, ] <- Sigma_array[i, j, ] <- solve(t(P_2_w) %*% P_2_w) %*% t(P_2_w) %*% y_w
+
+		design_m <- t(P_2_w) %*% P_2_w		
+		inv_dm <- solve(design_m)
+  		Sigma_array[j, i, ] <- Sigma_array[i, j, ] <- inv_dm %*% t(P_2_w) %*% y_w
   	}
   }
   return(lapply(1:K, function(k) Sigma_array[ , , k]))
