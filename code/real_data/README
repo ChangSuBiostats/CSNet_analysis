@@ -1,0 +1,32 @@
+# Workflow of the real data analysis in Section 4:
+
+## Step 1: generate data and gene ordering for four gene sets
+for i in {1..4}
+do
+  Rscript prepare_gene_sets_data.R --i_geneset=$i
+done
+
+## Step 2: evaluate co-expression estimates and save heat maps
+
+<!---
+The following codes produce the heat maps for
+Figure 3, 4, S7, S8, S10
+-->
+
+for i in {1..4}
+do
+  Rscript compute_estimates.R --i_geneset=$i
+done
+
+## Step 3: run other analysis
+
+### Cross cell type analysis as described in Section 3.1 and A2.
+
+<!---
+The following codes produce Figures S1-3.
+-->
+Rscript cross_ct_magnitude.R
+Rscript cross_ct_robust_to_misspecification.R
+
+### A simultaneous analysis of three gene sets (Figure S9)
+Rscript analysis_of_three_GO_sets.R

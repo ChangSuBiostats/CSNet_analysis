@@ -1,0 +1,71 @@
+# Workflow for simulation experiments
+
+<!---
+The following scripts are saved under scripts/.
+Please navigate to scripts/ to run these scripts.
+-->
+
+## Step 1: run experiments that simulate data, compute different methods and compute evaluation criteria
+
+<!---
+The followng bash scripts generate the sets of Rscripts that were run to produce tables.
+-->
+
+### truncated AR(1), Table 1, 2, S1, S2
+bash gen_AR_10_joblist.sh
+
+### real data based, Table S4, S5
+bash gen_real_data_joblist.sh th_0.6_same_struct
+
+### truncated AR(1), small p, Table S3
+gen_small_p_30_joblist.sh
+
+### sensitivity analysis, Table 3
+bash gen_new_sensitivity_joblist.sh real_data
+
+### K=4, Table S6
+bash gen_large_K_joblist.sh 4 F
+
+### K=10, Table S7
+bash gen_large_K_joblist.sh 10 F
+
+
+## Step 2: make tables that summarize the experimental results
+
+### truncated AR(1), Table 1,2
+bash make_AR_10_tables.sh '' sparse
+bash make_AR_10_tables.sh '' dense
+
+### sensitivity analysis, Table 3
+bash make_new_sensitivity_tables.sh CSNet real_data_th_0.6_same_struct
+
+### oracle, Table S1
+bash make_AR_10_tables.sh '' oracle_only
+
+### bMIND-inf, Table S2 and S5
+bash make_AR_10_tables.sh '' bMIND-inf
+bash make_real_data_tables.sh th_0.6_same_struct bMIND-inf
+
+### real data based, Table S4, S5
+bash make_real_data_tables.sh th_0.6_same_struct standard
+
+### K=4, Table S6
+bash make_K_4_tables.sh standard FALSE 12.0
+
+### K=10, Table S7
+bash make_K_10_tables.sh CSNet FALSE 12.0
+
+
+## Step 3: plot ROC curves
+sbatch plot_AR_10_ROC_curves.sh
+
+
+## Step 4: generate Figure 1 (heatmaps)
+
+<!---
+Run the following codes (note that n_rep=1) will automatically save the heatmaps for Figure 1 and S5.
+-->
+
+Rscript experiment.R --n_rep 1 --i_rep 1 --n 150 --p 100 --K 2 --log_var 8.0 --cor_model AR_10 --beta1 2 --beta2 1 --rho1 0.8 --rho2 0.8 --save_est T
+
+
