@@ -1,9 +1,8 @@
 # Workflow of the real data analysis in Section 4:
 
-## Step 0: preprocess raw data from Synapse and generate cell type proportions
+## Step 0: preprocess raw data from Synapse and estimate cell type proportions with CIBERSORTx
 Rscript preprocess_data_from_Synapse.R # preprocess bulk RNA-seq data
-Rscript make_sc_input.R
-bash run_cbx.sh
+bash generate_cell_type_proportions.sh # construct single cell reference and run CIBERSORTx
 
 ## Step 1: generate data and gene ordering for four gene sets
 for i in {1..4}
