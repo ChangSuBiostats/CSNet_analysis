@@ -43,10 +43,7 @@ th <- 0.01
 # data
 # -
 
-# This folder contains RNA-seq data from the ROSMAP project, which are under controlled access.
-# Application for the access can be found here:
-# https://www.synapse.org/#!Synapse:syn3388564
-rosmap_data_dir <- '/gpfs/gibbs/project/fan_zhou/cs2629/CSNet/real_data/covest-real-data/ROSMAP'
+rosmap_data_dir <- ''
 
 # This folder stores intermediate data results that cannot be shared
 # due to the same reason as above.
@@ -55,10 +52,9 @@ output_dir <- 'output/'
 # Data in this folder are available with the github repo
 saved_data_dir <- '../../data/ROSMAP'
 
-# load bulk data
+# load bulk data (preprocessed using preprocess_data_from_Synapse.R)
 ROSMAP_bulk <- readRDS(sprintf('%s/output/fpkm_unadj_by_batch.rds', rosmap_data_dir))
 bulk_genes <- readRDS(sprintf('%s/output/ROSMAP_annotLookup_new.rds', rosmap_data_dir))
-# int_meta <- readRDS('output/ROSMAP_interesting_covar.rds')
 
 # load cell type proportions
 train_props_df <- read.table(sprintf('%s/CIBERSORTx/output/train/res_ROSMAP_sc_ref_all_group_5000//CIBERSORTx_Adjusted.txt',
