@@ -57,7 +57,7 @@ bash make_K_10_tables.sh CSNet FALSE 12.0
 
 
 ## Step 3: plot ROC curves
-sbatch plot_AR_10_ROC_curves.sh
+bash plot_AR_10_ROC_curves.sh
 
 
 ## Step 4: generate Figure 1 (heatmaps)

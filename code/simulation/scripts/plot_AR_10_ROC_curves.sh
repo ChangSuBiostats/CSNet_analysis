@@ -1,10 +1,6 @@
 #!/bin/bash
-#SBATCH --job-name=roc_AR_10
-#SBATCH --time=1:00:00
 
 cd ..
-ml miniconda
-conda activate r_csnet_3
 
 for n in 150 600
 do
