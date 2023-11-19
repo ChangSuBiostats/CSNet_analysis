@@ -115,7 +115,7 @@ ROSMAP_genes <- ROSMAP_genes_df[[1]]
 saveRDS(list(train = ROSMAP_fpkm_rm_redun_train,
             valid = ROSMAP_fpkm_rm_redun_valid,
             gene = ROSMAP_genes), 'output/fpkm_unadj_by_batch.rds')
-a                         
+
 # save a version to run CIBERSORTx
 # run deconvolution for the training samples
 exp_m <- as.matrix(ROSMAP_fpkm_rm_redun_train)
