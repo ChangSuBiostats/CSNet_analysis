@@ -18,3 +18,5 @@ The analysis was conducted in R and Conda was used as the package environment to
 # data
 This folder saves the real data correlation structure used in simulation, and the list of four gene sets used in real data analysis. See 'data/README' for more details.
 
+# output
+This folder saves the CSNet estimates in real data analysis.
