@@ -115,7 +115,7 @@ ROSMAP_genes <- ROSMAP_genes_df[[1]]
 saveRDS(list(train = ROSMAP_fpkm_rm_redun_train,
             valid = ROSMAP_fpkm_rm_redun_valid,
             gene = ROSMAP_genes), 'output/fpkm_unadj_by_batch.rds')
-                         
+a                         
 # save a version to run CIBERSORTx
 # run deconvolution for the training samples
 exp_m <- as.matrix(ROSMAP_fpkm_rm_redun_train)
@@ -124,3 +124,45 @@ exp_df <- cbind(GeneSymbol = ROSMAP_genes$external_gene_name,
 write.table(exp_df, sprintf('output/bulk_%s_%s.txt', set),
             row.names=F, quote=F, sep = '\t')
 
+
+################
+# Download ROSMAP snRNA-seq data from Synapse
+# https://www.synapse.org/#!Synapse:syn21261143
+###############
+
+# load downloaded snRNA-seq data
+sc_counts <- readMM("filtered_count_matrix.mtx")
+rownames(sc_counts) <- readLines("filtered_gene_row_names.txt")
+mdata <- read.delim("filtered_column_metadata.txt")
+
+
+###############
+# Generate cell-type-specific pseudo-bulk data
+# to be used in compute_estimates.R
+# for estimating single cell based co-expression
+###############
+
+unique_projid <- unique(mdata$projid)
+for(ct in c('Ex', 'Oli', 'Mic', 'Ast')){
+	count_m <- sc_counts[, mdata$broad.cell.type == ct]
+	projid_ct <- mdata$projid[mdata$broad.cell.type == ct]
+	syn_bulk <- matrix(0, nrow = nrow(count_m), ncol = length(unique_projid))
+    rownames(syn_bulk) <- rownames(count_m)
+    colnames(syn_bulk) <- unique_projid
+    for(i in 1:length(unique_projid)){
+        projid_ct_ind <- projid_ct == unique_projid[i] 
+        if(sum(projid_ct_ind) > 1){
+            syn_bulk[, i] <- rowSums(count_m[, projid_ct_ind])
+        }else if(sum(projid_ct_ind) == 1){
+            syn_bulk[, i] <- count_m[, projid_ct_ind]
+        }else if(sum(projid_ct_ind) == 0){
+            syn_bulk[, i] <- rep(0, nrow(syn_bulk))
+        }
+    }
+    seq_depths <- apply(syn_bulk, 2, sum)
+
+    # rescale by normalizing depths
+    # to have the same magnitude: median(seq_depths)
+    syn_bulk <- scale(syn_bulk, scale = seq_depths, center = F) * median(seq_depths)
+    saveRDS(sprintf('output/pseudo_bulk/bulk_scRNAseq_%s_nor_pseudo_bulk.rds', ct))
+}
