@@ -1,9 +1,12 @@
-Please replace the contents of this file with relevant instructions for your repository or remove this file entirely.
+This folder saves the real data correlation structure used in simulation, and the list of four gene sets used in real data analysis. 
 
-This directory would generally contain the real data files (or facsimile versions of them in place of confidential data) and simulated data files.
+## simulation
+A large number of data files were generated for simulation experiments and they can all be reproduced following code/simulation/README.md. As a result, we did not include simulated data files here.
 
-Cleaned data that are produced by processing raw input data might also be placed here.
+We provide here two correlation matrices used for setting true co-expression structures in the simulation experiments in Section 3. They were used to generate the results in Table S4.
+1. Excitatory Neurons_p_100_th_0.6_spcones_cor
+2. Excitatory Neurons_p_200_th_0.6_spcones_cor
 
-Code to generate the simulated data and (if relevant) and facsimile data provided in place of confidential real data might also be placed here. 
+## real_data
 
-Code for data cleaning could potentially also be placed here rather than in `code`.
+We did not save any gene expression data from the ROSMAP study here per data policy. We share here the four gene lists studied in Section 4.
