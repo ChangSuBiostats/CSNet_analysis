@@ -5,7 +5,9 @@ Rscript preprocess_data_from_Synapse.R # preprocess bulk RNA-seq data
 bash generate_cell_type_proportions.sh # construct single cell reference and run CIBERSORTx
 
 ## Step 1: generate data and gene ordering for four gene sets
+
 Rscript obtain_AD_gene_list.R # generate the list of AD risk genes
+
 for i in {1..4}
 do
   Rscript prepare_gene_sets_data.R --i_geneset=$i

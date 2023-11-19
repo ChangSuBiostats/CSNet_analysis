@@ -6,6 +6,12 @@
 *.Rproj
 *.DS_Store
 *.rds
+*.ipynb
+code/real_data/scripts
+code/real_data/output
+code/real_data/figures
+code/simulation/notebooks/
+code/simulation/results/
 code/simulation/scripts/
 code/simulation/figures/
 code/simulation/results/MA_rho_0.5_0.5/
