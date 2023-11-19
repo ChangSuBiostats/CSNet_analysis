@@ -22,15 +22,12 @@ library(nnls)
 # for ordering genes in the heatmap
 library(WGCNA)
 
-# for handling single cell data
-library(Seurat)
-
 # for visualization
 library(ggplot2)
 library(grid)
 library(gridExtra)
 
-# load bMIND and ENIGMA
+# load bMIND
 library(MIND)
 
 # -
@@ -72,7 +69,7 @@ figure_dir <- 'figures/coexp_estimates'
 
 # Data in this folder are available with the github repo
 # which saves the computed output from our method
-saved_data_dir <- '../../data/ROSMAP'
+saved_data_dir <- '../../output'
 
 # -
 # load preprocessed bulk data for the specific gene set

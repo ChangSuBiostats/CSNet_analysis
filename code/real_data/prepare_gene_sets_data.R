@@ -50,7 +50,7 @@ rosmap_data_dir <- ''
 output_dir <- 'output/'
 
 # Data in this folder are available with the github repo
-saved_data_dir <- '../../data/ROSMAP'
+geneset_data_dir <- '../../data/real_data'
 
 # load bulk data (preprocessed using preprocess_data_from_Synapse.R)
 ROSMAP_bulk <- readRDS(sprintf('%s/output/fpkm_unadj_by_batch.rds', rosmap_data_dir))
@@ -83,7 +83,7 @@ if(i_geneset %in% 1:3){
 	bulk_cl_hc <- run_wgcna(data_list, geneset, geneset_powers[geneset])
 }else{
 	# load AD genes generated via obtain_AD_gene_list.R
-	avail_AD_genes <- read.table(sprintf('%s/avail_AD_genes.txt', saved_data_dir))[[1]]
+	avail_AD_genes <- read.table(sprintf('%s/avail_AD_genes.txt', geneset_data_dir))[[1]]
 	geneset <- 'AD_risk_genes'
 	data_list_raw <- load_data(avail_AD_genes)
 	full_data_list_raw <- list(data_list_raw, avail_AD_genes)
