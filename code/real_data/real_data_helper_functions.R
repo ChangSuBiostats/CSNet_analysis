@@ -26,8 +26,8 @@ load_data <- function(genes){
 }
 
 load_GO_geneset <- function(geneset, low_filter = F, parse_style = 1, subset = NULL){
-    # load genes in the gene set
-    genes <- read.table(sprintf('%s/data/GO_pathway_genesets/%s', rosmap_data_dir, geneset),
+    # load genes in the gene set (saved in this github repo)
+    genes <- read.table(sprintf('../../data/ROSMAP/%s', geneset),
                         skip=1, sep = '\n')[-1,] %>% as.vector()
 
     # subset expression data
