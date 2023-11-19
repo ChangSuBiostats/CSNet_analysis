@@ -56,7 +56,7 @@ saved_data_dir <- '../../data/ROSMAP'
 ROSMAP_bulk <- readRDS(sprintf('%s/output/fpkm_unadj_by_batch.rds', rosmap_data_dir))
 bulk_genes <- readRDS(sprintf('%s/output/ROSMAP_annotLookup_new.rds', rosmap_data_dir))
 
-# load cell type proportions
+# load cell type proportions (generated with generate_cell_type_proportions.sh)
 train_props_df <- read.table(sprintf('%s/CIBERSORTx/output/train/res_ROSMAP_sc_ref_all_group_5000//CIBERSORTx_Adjusted.txt',
                                      rosmap_data_dir), header = T)
 train_props <- train_props_df[,2:9] %>% as.matrix()

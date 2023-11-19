@@ -14,7 +14,7 @@ done
 
 <!---
 The following codes produce the heat maps for
-Figure 3, 4, S7, S8, S10
+Figure 3, 4, 5, S7, S8, S10
 -->
 
 for i in {1..4}

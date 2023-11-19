@@ -36,10 +36,11 @@ library(MIND)
 # -
 # codes
 # -
-source('/home/cs2629/project/CSNet/JASA_codes/CSNet_analysis/code/mom_ls.R')
-source('/home/cs2629/project/CSNet/JASA_codes/CSNet_analysis/code/helper_function.R')
-source('/home/cs2629/project/CSNet/JASA_codes/CSNet_analysis/code/cross_validation.R')
-source('/home/cs2629/project/CSNet/JASA_codes/CSNet_analysis/code/simulation/visualization_helper.R')
+
+source('../mom_ls.R')
+source('../helper_function.R')
+source('../cross_validation.R')
+source('../simulation/visualization_helper.R')
 source('real_data_helper_functions.R')
 
 # -
@@ -66,24 +67,12 @@ plot_width <- 4
 # directories
 # -
 
-# This folder contains RNA-seq data from the ROSMAP project, which are under controlled access.
-# Application for the access can be found here:
-# https://www.synapse.org/#!Synapse:syn3388564
-rosmap_data_dir <- '/gpfs/gibbs/project/fan_zhou/cs2629/CSNet/real_data/covest-real-data/ROSMAP'
-
-# This folder contains single nucleus data from the ROSMAP project, which are under controlled access.
-# Application for the access can be found here:
-#  https://www.synapse.org/#!Synapse:syn21261143
-rosmap_sc_data_dir <- '/gpfs/gibbs/pi/zhao/cs2629/ROSMAP/GeneExpression/snRNAseqPFC_BA10'
-
-# This folder stores intermediate data results that cannot be shared
-# due to the same reason as above.
 output_dir <- 'output/'
 figure_dir <- 'figures/coexp_estimates'
 
 # Data in this folder are available with the github repo
+# which saves the computed output from our method
 saved_data_dir <- '../../data/ROSMAP'
-
 
 # -
 # load preprocessed bulk data for the specific gene set
@@ -98,6 +87,9 @@ genes <- full_data_list[[2]]
 bulk_cl_hc <- data_res$bulk_cl_hc
 
 all_cts <- colnames(data_list$P)
+
+# reproduce Table 4
+print(bulk_cl_hc$bulk_cl_hc$cluster)
 
 ###############
 # compute estimates
